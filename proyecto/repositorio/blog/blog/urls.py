@@ -25,4 +25,8 @@ urlpatterns = [
     # Ruta para la vista Home
     path('', views.Home, name='home'), 
     path('nosotros/', views.Nosotros, name='nosotros'),
+    
+    # urls aplicaciones
+    path('usuarios/', include('apps.usuarios.urls')),
+    
 ]

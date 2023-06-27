@@ -1,17 +1,9 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="es">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-    <title>Mi blog</title>
-</head>
-
-<body class="contenedor">
-    <h1>Hola mundo!</h1>
-    <a href="{% url 'nosotros' %}">IR A NOSOTROS</a>
-</body>
-
-</html>
+{% block titulo %}Home{% endblock titulo %}
+{% block contenido %}
+    <h1>Home</h1>
+    <p>Esta es la página de inicio</p>
+    <img src="{% static 'img/imagen.jpg' %}" alt="imagen">
+{% endblock contenido %}
