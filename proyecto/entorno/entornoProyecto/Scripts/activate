@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="D:\GitHub\INFO2023\proyecto\entorno\entornoProyecto"
+VIRTUAL_ENV="D:\GitHub\Proyecto-INFO2023\proyecto\entorno\entornoProyecto"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
