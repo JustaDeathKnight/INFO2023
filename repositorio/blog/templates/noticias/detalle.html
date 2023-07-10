@@ -10,9 +10,7 @@
     alt="{{ noticia.titulo }}"
     width="50%"
   />
-  <p>
-    <a href={% url 'noticias:detalle' noticia.pk %} TITULO: {{ noticia.titulo}}
-  </p>
+  <p>TITULO: {{noti.titulo}}</p>
   <p>FECHA: {{ noticia..fecha_publicacion }}</p>
   <p>CATEGORIA: {{ noticia.categoria_noticia }}</p>
   <p>CONTENIDO: {{ noticia.contenido }}</p>
