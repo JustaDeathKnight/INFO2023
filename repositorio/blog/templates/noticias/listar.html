@@ -4,7 +4,16 @@
 {% block titulo %}Noticias{% endblock titulo %}
 
 {% block contenido %}
-    <h2>Noticias</h2>
-    
+    <h2>Mis Noticias</h2>
+
+    {% for noti in noticias %}
+        <img src="{{noti.imagen.url}}" width="50">
+        <p>TITULO: {{noti.titulo}}</p>
+        <p>FECHA: {{noti.fecha_publicacion}}</p>
+        <p>CATEGORIA: {{noti.categoria_noticia}}</p>
+        <p>CUERPO: {{noti.contenido}}</p>
+        <br>
+    {% endfor %}
+
 {% endblock contenido %}
 
