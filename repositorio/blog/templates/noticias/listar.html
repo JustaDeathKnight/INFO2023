@@ -6,16 +6,28 @@
 {% block contenido %}
     <h2>Mis Noticias</h2>
 
-    {% for noti in noticias %}
-        <img src="{{noti.imagen.url}}" width="50">
-        <p>
-            <a href="{% url 'noticias:detalle' noticia.pk %}" >TITULO: {{ noticia.titulo}}</a>
-        </p>
-        <p>FECHA: {{noti.fecha_publicacion}}</p>
-        <p>CATEGORIA: {{noti.categoria_noticia}}</p>
-        <p>CUERPO: {{noti.contenido}}</p>
-        <br>
-    {% endfor %}
+    {% if noticias %}
+        <div class = "submenu">
+            <a href="{% url 'noticias:listar' %}">TODAS</a>
+            {% for cat in categorias %}
+                <a href="?id={{cat.pk}}">{{cat.nombre}}</a>
+            {% endfor %}
+
+        {% for noti in noticias %}
+            <img src="{{noti.imagen.url}}" width="50">
+            <p>
+                <a href="{% url 'noticias:detalle' noticia.pk %}" >TITULO: {{ noticia.titulo}}</a>
+            </p>
+            <p>FECHA: {{noti.fecha_publicacion}}</p>
+            <p>CATEGORIA: {{noti.categoria_noticia}}</p>
+            <p>CUERPO: {{noti.contenido}}</p>
+            <br>
+        {% endfor %}
+
+    {% else %}
+        <h2>No hay noticias</h2>
+    {% endif %}
+
 
 {% endblock contenido %}
 
