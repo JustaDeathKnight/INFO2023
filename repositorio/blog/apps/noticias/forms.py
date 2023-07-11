@@ -1,5 +1,5 @@
 from django import forms
-from .models import Noticia
+from .models import Noticia, Comentario
 
 
 class NoticiaForm(forms.ModelForm):
@@ -12,4 +12,13 @@ class NoticiaForm(forms.ModelForm):
             'contenido',
             'imagen',
             'categoria_noticia'
+        ]
+        
+class ComentarioForm(forms.Form):
+    
+    class Meta:
+        model: Comentario
+        fields = [
+            'usuario',
+            'texto'
         ]

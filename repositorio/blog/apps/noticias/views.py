@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import get_object_or_404, render, redirect, reverse
 from .models import Noticia, Categoria
-from .forms import NoticiaForm
+from .forms import ComentarioForm, NoticiaForm
 
 # Create your views here.
 
@@ -38,3 +38,14 @@ def add_noticia(request):
         return redirect(reverse('home'))
     
     return render(request, 'noticias/addNoticia.html', {'form': form})
+
+def add_comentario(request, pk):
+    
+    noticia = get_object_or_404(Noticia, pk=pk)    
+    form = ComentarioForm(request.POST or None)
+    
+    if form.is_valid():
+        comentario = form.save(commit=False)
+        comentario.noticias = noticia
+        comentario.save()
+        return redirect(reverse('noticias:detalle', args=[pk]))
