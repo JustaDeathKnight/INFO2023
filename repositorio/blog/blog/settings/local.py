@@ -12,10 +12,10 @@ DATABASES = {
     'default': {
         # Motor de la base de datos
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'blog_info',
+        'NAME': 'blog_cocina',
         # Credenciales de acceso
         'USER': 'root',
-        'PASSWORD': '2717',
+        'PASSWORD': 'root',
         # Host y puerto
         'HOST': 'localhost',
         'PORT': '',

@@ -22,4 +22,12 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    
+    # estructura de la ruta:
+    # path('ruta', views.vista_a_ejecutar, name='nombre_ruta')
+    # Ruta para la vista Home
+    path('', views.Home, name='home'),
+    path('nosotros/', views.Nosotros, name='nosotros'),
+    
+    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
