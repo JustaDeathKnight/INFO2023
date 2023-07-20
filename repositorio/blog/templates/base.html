@@ -25,7 +25,8 @@
       rel="icon"
       type="image/x-icon"
       href="{% static 'img/favicon.ico' %}"
-    />
+      />
+      <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <!-- Core theme CSS (includes Bootstrap)-->
     {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" /> {% endcomment %}
     {% block css %}{% endblock css %}
@@ -56,5 +57,9 @@
     
 
     {% block js %}{% endblock js %}
+    <footer  style="display: flexbox; background-color: black; margin-top: 10px; padding: 20px; width: 100%;" >
+      <p><h3 style="color: aliceblue; text-align: center;">© 2023 LA COCINA DEL INFO - BLOG DE COCINA . DISEÑO: GRUPO 8 .</h3></p>
+    </footer>
+
   </body>
 </html>

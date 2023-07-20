@@ -9,3 +9,6 @@ def Home(request):
 
 def Nosotros(request):
     return render(request, 'nosotros.html')
+
+def Contacto(request):
+    return render(request, 'contacto.html')

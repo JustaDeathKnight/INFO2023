@@ -4,7 +4,46 @@
 {% block titulo %}Home{% endblock titulo %}
 
 {% block contenido %}
-    <h1>Home</h1>
-    <p>Esta es la página de inicio</p>
-    <img src="{% static 'img/favicon.ico' %}" alt="imagen">
+
+    <section>
+        
+        <div class="row" style="margin-left: 5px;">
+            <div class="col-sm-1 col-md-1 col-lg-1">
+                <h1>Home</h1>
+                <p>Esta es la página de inicio</p>
+                <img style="width: 100px;"src="{% static 'img/favicon.ico' %}" alt="imagen">
+            </div>
+
+            <div class="col-sm-12 col-md-10 col-lg-10">
+                <h1 style="display: flex; flex-direction: column; justify-content: center; align-items: center;">BIENVENIDOS A LA COCINA DEL INFO</h1>
+            </div>
+        </div>
+
+
+        <div class="container" style="width: 800px;">
+            <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active" data-bs-interval="10000" >
+                    <img src="{% static 'img/rosquilla1.jpg' %}" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item" data-bs-interval="2000">
+                    <img src="{% static 'img/rosquilla2.jpg' %}" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="{% static 'img/rosquilla3.jpg' %}" class="d-block w-100" alt="...">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+        </div>
+    </section>
+
 {% endblock contenido %}
+

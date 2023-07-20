@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosotros</title>
+    {% extends 'base.html' %}
+</head>
+<body style="background-color:blanchedalmond ;">
+    
+    {% load static %}
+    {% block contenido %}
+        
+        <div class="row" style="margin-left: 5px;">
+            <div class="col-sm-1 col-md-1 col-lg-1">
+                <h1>Sobre Nosotros</h1>
+                <img style="width: 100px;"src="{% static 'img/favicon.ico' %}" alt="imagen">
+            </div>
+
+            <div class="col-sm-12 col-md-10 col-lg-10">
+                <h1 style="display: flex; flex-direction: column; justify-content: center; align-items: center;">SOBRE LA CONINA DEL INFO</h1>
+                <br>
+                <p style="text-align: justify; font-size: xx-large;">
+                    Somos un apasionado equipo de amantes de la gastronomía que ha decidido compartir con el mundo nuestras mejores recetas, consejos culinarios y experiencias en la cocina. Nuestro objetivo es llevar la magia de la comida a todos los hogares, inspirar a cocineros novatos y expertos por igual, y convertir cada comida en un verdadero deleite para los sentidos.
+
+En este rincón virtual, encontrarás una exquisita selección de platos, desde clásicos atemporales hasta innovadoras creaciones. Nuestra cocina abarca una amplia variedad de culturas y sabores, porque creemos que la diversidad es la sal de la vida culinaria. No importa si buscas recetas reconfortantes para esos días lluviosos, platos elegantes para impresionar a tus invitados o delicias saludables para cuidar de ti mismo, aquí encontrarás lo que necesitas.
+
+Además de compartir recetas, también deseamos brindarte consejos prácticos, técnicas culinarias y trucos que hemos aprendido a lo largo de los años. Queremos que te sientas seguro y creativo en la cocina, ¡nada puede detener el poder de un cocinero confiado y apasionado!
+
+Detrás de cada receta, hay historias que nos conectan con nuestros orígenes, memorias de infancia y momentos especiales compartidos con nuestros seres queridos. Y es en esas historias donde reside el verdadero sabor de nuestras creaciones. Por eso, no solo compartimos recetas, sino también el corazón y el alma que ponemos en cada plato.
+
+Así que, si te gusta experimentar con sabores, aprender nuevos trucos de cocina y disfrutar de cada bocado, este es tu lugar. Te invitamos a unirte a nuestra comunidad culinaria y explorar junto a nosotros el maravilloso mundo de la cocina. Juntos, cocinemos momentos inolvidables.
+
+¡Buen provecho!
+
+El Equipo del Blog de Cocina
+                </p>
+            </div>
+        </div>
+    {% endblock contenido %}
+
+    
+
+</body>
+</html>
