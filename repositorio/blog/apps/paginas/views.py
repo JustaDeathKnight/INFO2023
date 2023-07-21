@@ -2,7 +2,7 @@ from django.shortcuts import render
 from apps.articulos.models import Articulo, Categoria
 
 # Create your views here.
-def inicio(request):
+def home(request):
     return render(request, 'paginas/home.html')
 
 def acerca_de(request):
