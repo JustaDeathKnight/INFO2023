@@ -3,7 +3,7 @@ from apps.articulos.models import Articulo, Categoria
 
 # Create your views here.
 def inicio(request):
-    return render(request, 'paginas/inicio.html')
+    return render(request, 'paginas/home.html')
 
 def acerca_de(request):
     return render(request, 'paginas/acerca_de.html')
