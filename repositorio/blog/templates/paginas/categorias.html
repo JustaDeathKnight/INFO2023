@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+<div class="container">
+  <div class="row">
+    {% for categoria in categorias %}
+    <div class="col-md-4 mb-4">
+      <div class="card" style="width: 18rem;">
+        <img src="{{ categoria.icono.url }}" class="card-img-top" alt="{{ categoria.nombre }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ categoria.nombre }}</h5>
+          <p class="card-text">{{ categoria.descripcion }}</p>
+          <a href="{% url 'articulos_por_categoria' categoria.id %}" class="btn btn-primary">Ver artículos</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock contenido %}
