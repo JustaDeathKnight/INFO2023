@@ -15,6 +15,7 @@ class Articulo(models.Model):
     resumen = models.CharField(max_length = 100, null =True)
     contenido = models.TextField()
     fecha_publicacion = models.DateTimeField(auto_now_add=True)
+    imagen = models.ImageField(upload_to = 'articulos')
     categoria_articulo = models.ForeignKey(Categoria, on_delete= models.CASCADE)
 
     def __str__(self):
