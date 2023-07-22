@@ -11,12 +11,15 @@
           <p class="card-text">{{ articulo.contenido }}</p>
         </div>
       </div>
+      {% if user.is_authenticated and user == articulo.autor %}
+      <a href="{% url 'borrar_articulo' articulo.pk %}" class="btn btn-danger">Borrar artículo</a>
+      {% endif %}
     </div>
     <div class="col-md-4">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Categoría: {{ articulo.categoria_articulo }}</h5>
-          <p class="card-text"> Autor: {{articulo.autor}}</p>
+          <p class="card-text">Autor: {{ articulo.autor }}</p>
           <p class="card-text">Fecha de publicación: {{ articulo.fecha_publicacion }}</p>
         </div>
       </div>
