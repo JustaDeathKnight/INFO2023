@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}RECETAS{% endblock titulo %}
+
+{% block contenido %}
+    <h1>AQUI ESTA UNA RECETA DETALLADA</h1>
+    
+    <img src="{{Receta.image.url}}" alt="" width="50px">
+    <p>TITULO: {{Receta.titulo}} </p>
+    <p>INGREDIENTES: {{Receta.ingredientes}} </p>
+    <p>PREPARACION: {{Receta.preparacion}} </p>
+    <p>NOTA: {{Receta.nota}} </p>
+    <p>FECHA DE PUBLICACION: {{Receta.fecha_de_publicacion}} </p>
+    <p>CATEGORIA: {{Receta.categoria_receta}} </p>
+    
+{% endblock contenido %}

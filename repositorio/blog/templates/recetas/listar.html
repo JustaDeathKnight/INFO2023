@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}RECETAS{% endblock titulo %}
+
+{% block contenido %}
+    <h1>AQUI DEBERIAN LISTARSE LAS RECETAS</h1>
+    {% for r in Recetas %}
+        <img src="{{r.image.url}}" alt="" width="50px">
+        <p><a href="{% url 'recetas:detalle' r.pk %}">TITULO: {{r.titulo}}</a></p>
+        <p>NOTA: {{r.nota}} </p>
+        <p>FECHA DE PUBLICACION: {{r.fecha_de_publicacion}} </p>
+        <p>CATEGORIA: {{r.categoria_receta}} </p>
+    {% endfor %}
+
+{% endblock contenido %}

@@ -33,5 +33,6 @@ urlpatterns = [
     # path('noticias/', include('apps.noticias.urls')),
     path('usuarios/', include('apps.usuarios.urls')),
     path('contacto/', views.Contacto, name='contacto'),
+    path('recetas/', include('apps.recetas.urls')),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
