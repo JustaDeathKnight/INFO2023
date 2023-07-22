@@ -33,7 +33,9 @@
     <title>Blog de Cocina | {% block titulo %} {% endblock titulo %}</title>
   </head>
 
-  <body>
+  <body> 
+    {% load pwa %}
+    {% progressive_web_app_meta %}
     <header>{% include 'navbar.html' %}</header>
     <main>{% block contenido %} {% endblock contenido %}</main>
     <footer>

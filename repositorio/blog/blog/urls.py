@@ -22,6 +22,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('pwa.urls')),
     
     # estructura de la ruta:
     # path('ruta', views.vista_a_ejecutar, name='nombre_ruta')
