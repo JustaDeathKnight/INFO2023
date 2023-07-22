@@ -6,7 +6,7 @@
 {% block contenido %}
     <h1>AQUI DEBERIAN LISTARSE LAS RECETAS</h1>
     {% for r in Recetas %}
-        <img src="{{r.image.url}}" alt="" width="50px">
+        <img src="{{r.imagen.url}}" alt="" width="150px">
         <p><a href="{% url 'recetas:detalle' r.pk %}">TITULO: {{r.titulo}}</a></p>
         <p>NOTA: {{r.nota}} </p>
         <p>FECHA DE PUBLICACION: {{r.fecha_de_publicacion}} </p>
