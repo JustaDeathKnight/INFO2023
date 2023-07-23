@@ -49,3 +49,14 @@ def add_comentario(request, pk):
         comentario.noticias = noticia
         comentario.save()
         return redirect(reverse('noticias:detalle', args=[pk]))
+
+@login_required
+def EditNoticia(request, pk):
+    noticia = get_object_or_404(Noticia, pk=pk)
+    form = NoticiaForm(request.POST or None, instance=noticia)
+    
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return redirect(reverse('home'))
+    
+    return render(request, 'noticias/addNoticia.html', {'form': form})

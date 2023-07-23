@@ -15,7 +15,7 @@ DATABASES = {
         'NAME': 'blog_info',
         # Credenciales de acceso
         'USER': 'root',
-        'PASSWORD': '2717',
+        'PASSWORD': 'root',
         # Host y puerto
         'HOST': 'localhost',
         'PORT': '',
