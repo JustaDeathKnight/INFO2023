@@ -1,5 +1,7 @@
 from django.db import models
 from apps.usuarios.models import Usuario
+from django.contrib.auth.models import User
+from django.conf import settings
 
 # Create your models here.
 
@@ -11,6 +13,16 @@ class Categoria(models.Model):
         return self.nombre
 
 
+class Comentario(models.Model):
+    autor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    contenido = models.TextField()
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Comentario por {self.autor.username} en {self.fecha_creacion}"
+
+
+
 class Articulo(models.Model):
     titulo = models.CharField(max_length= 50)
     resumen = models.CharField(max_length = 100, null =True)
@@ -19,6 +31,8 @@ class Articulo(models.Model):
     imagen = models.ImageField(upload_to = 'articulos', default='iconos/default_icon.png')
     categoria_articulo = models.ForeignKey(Categoria, on_delete= models.CASCADE)
     autor = models.ForeignKey(Usuario, on_delete=models.CASCADE, default=Usuario.objects.get(is_superuser=True).pk) 
+    comentarios = models.ManyToManyField(Comentario, related_name='articulo')
 
     def __str__(self):
         return self.titulo
+
