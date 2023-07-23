@@ -41,6 +41,16 @@
           <span class="badge d-inline-flex align-items-center p-1 pe-2 text-light-emphasis bg-light text-bg-light border border-dark-subtle rounded-pill ">
             <img class="rounded-circle me-1" width="30" height="30" src="{{ user.imagen }}" alt="">
             {{ user.username }}
+            {% if user.is_superuser %}
+              <a class="btn btn-warning btn-sm rounded-pill mx-2 me-0" href="#-1 ">Admin</a>
+            {% else %}
+              {% if user.is_colaborador %}
+                <span class="btn btn-info btn-sm rounded-pill mx-2 me-0 disabled" href="#-1">Colaborador</span>
+              {% else %}
+                <span class="btn btn-success btn-sm rounded-pill mx-2 me-0 disabled" href="#-1">Miembro</span>
+              {% endif %}
+            {% endif %}
+
             <span class="vr mx-2 bg-dark"></span>
             <a
               type="button"

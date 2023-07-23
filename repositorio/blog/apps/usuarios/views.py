@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.views.generic import CreateView
-from .forms import RegistroForm
+from .forms import RegistroForm, ColabForm
 from django.urls import reverse_lazy
 
 # Create your views here.
@@ -35,3 +35,16 @@ def user_register(request):
     else:
         form = RegistroForm()
     return render(request, 'usuarios/registro.html', {'form': form})
+
+def user_colab(request):
+    if request.method == 'POST':
+        form = ColabForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Usuario creado correctamente')
+            return redirect('login')
+        else:
+            messages.error(request, 'Error al crear el usuario')
+    else:
+        form = ColabForm()
+    return render(request, 'usuarios/colab.html', {'form': form})
