@@ -1,4 +1,3 @@
-<!-- detalle_articulo.html -->
 {% extends 'base.html' %}
 
 {% block contenido %}
@@ -19,20 +18,25 @@
       {% if comentarios %}
         <ul>
           {% for comentario in comentarios %}
-            <li>{{ comentario.contenido }} - Por: {{ comentario.autor.username }} - {{ comentario.fecha_creacion }}</li>
+            <li>{{ comentario.contenido }} - Por: {{ comentario.autor.username }} - {{ comentario.fecha_creacion }}
+              {% if user.is_authenticated and user == comentario.autor %}
+                - <a href="{% url 'editar_comentario' articulo_id=articulo.id comentario_id=comentario.id %}" >Editar</a>
+                - <a href="{% url 'borrar_comentario' articulo_id=articulo.id comentario_id=comentario.id %}">Borrar</a>
+              {% endif %}
+            </li>
           {% endfor %}
         </ul>
       {% else %}
         <p>No hay comentarios aún.</p>
       {% endif %}
-
+      
       <!-- Formulario para agregar comentario -->
       {% if user.is_authenticated %}
         <h3>Agregar Comentario</h3>
         <form method="post">
           {% csrf_token %}
           {{ form.as_p }}
-          <button type="submit">Agregar Comentario</button>
+          <button type="submit">Comentar</button>
         </form>
       {% else %}
         <p>Debes iniciar sesión para agregar comentarios.</p>
@@ -45,6 +49,10 @@
           <h5 class="card-title">Categoría: {{ articulo.categoria_articulo }}</h5>
           <p class="card-text">Autor: {{ articulo.autor }}</p>
           <p class="card-text">Fecha de publicación: {{ articulo.fecha_publicacion }}</p>
+          {% if user.is_authenticated and user == articulo.autor %}
+            <a href="{% url 'editar_articulo' pk=articulo.pk %}" class="btn btn-primary">Editar Artículo</a>
+            <a href="{% url 'borrar_articulo' pk=articulo.pk %}" class="btn btn-danger">Borrar Artículo</a>
+          {% endif %}
         </div>
       </div>
     </div>

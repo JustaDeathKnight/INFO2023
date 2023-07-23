@@ -32,13 +32,26 @@ def AddArticulo(request):
     return render(request, 'articulos/add_articulo.html', {'form': form, 'categorias': categorias})
 
 @login_required
+def editar_articulo(request, pk):
+    articulo = get_object_or_404(Articulo, pk=pk)
+    
+    if request.method == 'POST':
+        form = ArticuloForm(request.POST, request.FILES, instance=articulo)
+        if form.is_valid():
+            form.save()
+            return redirect('detalle_articulo', pk=pk)
+    else:
+        form = ArticuloForm(instance=articulo)
+    
+    return render(request, 'articulos/editar_articulo.html', {'form': form, 'articulo': articulo})
+
+@login_required
 def borrar_articulo(request, pk):
     articulo = get_object_or_404(Articulo, pk=pk)
     if request.method == 'POST':
         articulo.delete()
         return redirect('home')
     return render(request, 'articulos/borrar_articulo.html', {'articulo': articulo})
-
 
 def detalle_articulo(request, pk):
     articulo = get_object_or_404(Articulo, pk=pk)
@@ -55,3 +68,26 @@ def detalle_articulo(request, pk):
             return redirect('detalle_articulo', pk=pk)
 
     return render(request, 'articulos/detalle_articulo.html', {'articulo': articulo, 'comentarios': comentarios, 'form': form})
+
+
+def editar_comentario(request, comentario_id):
+    comentario = get_object_or_404(Comentario, id=comentario_id, autor=request.user)
+
+    if request.method == 'POST':
+        form = ComentarioForm(request.POST, instance=comentario)
+        if form.is_valid():
+            form.save()
+            return redirect('detalle_articulo', pk=comentario.articulo.pk)
+    else:
+        form = ComentarioForm(instance=comentario)
+
+    return render(request, 'articulos/editar_comentario.html', {'form': form, 'comentario': comentario})
+
+def borrar_comentario(request, comentario_id):
+    comentario = get_object_or_404(Comentario, id=comentario_id, autor=request.user)
+
+    if request.method == 'POST':
+        comentario.delete()
+        return redirect('detalle_articulo', pk=comentario.articulo.pk)
+
+    return render(request, 'articulos/borrar_comentario.html', {'comentario': comentario})
