@@ -9,5 +9,6 @@ urlpatterns = [
     path('articulo/<int:pk>/borrar/', views.borrar_articulo, name='borrar_articulo'),
     path('articulo/<int:articulo_id>/editar-comentario/<int:comentario_id>/', views.editar_comentario, name='editar_comentario'),
     path('articulo/<int:articulo_id>/borrar-comentario/<int:comentario_id>/', views.borrar_comentario, name='borrar_comentario'),
+    path('crear_categoria/', views.crear_categoria, name='crear_categoria'),
 
 ]

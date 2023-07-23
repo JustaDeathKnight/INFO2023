@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Categoria, Articulo, Comentario
 from django.contrib.auth.decorators import login_required
 from apps.usuarios.models import Usuario
-from .forms import ArticuloForm, ComentarioForm
+from .forms import ArticuloForm, ComentarioForm, CategoriaForm
 
 
 # Create your views here.
@@ -91,3 +91,14 @@ def borrar_comentario(request, comentario_id):
         return redirect('detalle_articulo', pk=comentario.articulo.pk)
 
     return render(request, 'articulos/borrar_comentario.html', {'comentario': comentario})
+
+def crear_categoria(request):
+    if request.method == 'POST':
+        form = CategoriaForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('home')  # Redirige a la página principal o la que desees
+    else:
+        form = CategoriaForm()
+
+    return render(request, 'articulos/crear_categoria.html', {'form': form})
