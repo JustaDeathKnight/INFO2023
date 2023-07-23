@@ -6,5 +6,5 @@ urlpatterns = [
     path('login/', user_login, name='login'),
     path('logout/', user_logout, name='logout'),
     path('registro/', user_register, name='registro'),
-    path('colab/', user_colab, name='colab')
+    path('colaborador/', user_colab, name='colaborador')
 ]

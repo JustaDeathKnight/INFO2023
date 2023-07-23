@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.views.generic import CreateView
 from .forms import RegistroForm, ColabForm
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.urls import reverse_lazy
 
 # Create your views here.
@@ -19,6 +20,7 @@ def user_login(request):
             messages.error(request, 'Usuario o contraseña no validos')
     return render(request, 'usuarios/login.html', {})
 
+@login_required
 def user_logout(request):
     logout(request)
     return redirect('login')
@@ -36,6 +38,8 @@ def user_register(request):
         form = RegistroForm()
     return render(request, 'usuarios/registro.html', {'form': form})
 
+# Verifica si el usuario es superusuario
+@user_passes_test(lambda u: u.is_superuser)
 def user_colab(request):
     if request.method == 'POST':
         form = ColabForm(request.POST)
@@ -47,4 +51,4 @@ def user_colab(request):
             messages.error(request, 'Error al crear el usuario')
     else:
         form = ColabForm()
-    return render(request, 'usuarios/colab.html', {'form': form})
+    return render(request, 'usuarios/colaborador.html', {'form': form})

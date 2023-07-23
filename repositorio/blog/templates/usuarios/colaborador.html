@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block title %}Registro{% endblock %}
  
 {% block contenido %}
 
-  <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalSignin">
+  <div class="modal modal-sheet position-static d-block bg-body-secondary p-0 m-0" tabindex="-1" role="dialog" id="modalSignin">
     <div class="modal-dialog" role="document">
       <div class="modal-content rounded-4 shadow">
         <div class="modal-header p-5 pb-4 border-bottom-0">
-          <h1 class="fw-bold mb-0 fs-2">Registarse</h1>
+          <h2 class="fw-bold mb-0 fs-2">Registro colaborador</h2>
           <a class="btn-close" type="button"aria-label="Close"  href="{% url 'home' %}"></a>
         </div>
 
@@ -16,16 +17,15 @@
           <form method="POST">
             {% csrf_token %}
 
-            {% comment %} NOMBRE {% endcomment %}
-            <div class="form-floating mb-3">
-              <input type="text" name="first_name" class="form-control rounded-3" id="floatingInputFirstName" placeholder="Nombre" required>
-              <label for="floatingInput">Nombre</label>
-            </div>
-
-            {% comment %} APELLIDO {% endcomment %}
-            <div class="form-floating mb-3">
-              <input type="text" name="last_name" class="form-control rounded-3" id="floatingInputLastName" placeholder="Apellido" required>
-              <label for="floatingInput">Apellido</label>
+            <div class="row">
+              <div class="col form-floating mb-3">
+                <input type="text" name="first_name" class="form-control rounded-3" id="floatingInputFirstName" placeholder=" Nombre" required>
+                <label class="ms-2" for="floatingInput"> Nombre</label>
+              </div>
+              <div class="col form-floating mb-3">
+                <input type="text" name="last_name" class="form-control rounded-3" id="floatingInputLastName" placeholder=" Apellido" required>
+                <label class="ms-2" for="floatingInput"> Apellido</label>
+              </div>
             </div>
 
             {% comment %} USER {% endcomment %}
@@ -77,13 +77,6 @@
 
             {% comment %} BUTTON {% endcomment %}
             <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Registrar</button>
-            
-            {% comment %} SEPARATOR {% endcomment %}
-            <hr class="my-3">
-
-            <div class="form-link mt-2 text-center">
-              <span>Tiene una cuenta? <a href="{% url 'login' %}" class="link signup-link">Inicie sesión</a></span>
-            </div>
         
           </form>
         </div>

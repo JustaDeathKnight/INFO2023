@@ -32,7 +32,7 @@ class ColabForm(UserCreationForm):
         label='Contraseña', widget=forms.PasswordInput, required=True)
     password2 = forms.CharField(
         label='Confirmar Contraseña', widget=forms.PasswordInput, required=True)
-    is_colaborador = forms.BooleanField(label='Colaborador', widget=forms.CheckboxInput, required=True)
+    is_colaborador = forms.BooleanField(label='Colaborador', widget=forms.CheckboxInput, required=False)
 
     class Meta:
         model = Usuario
