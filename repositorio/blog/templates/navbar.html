@@ -9,8 +9,8 @@
         <img class="rounded-circle me-0" width="30" height="30" src="{% static 'img/donut_food_icon.svg' %}" alt="">
       </span>
       <div class='mx-2'>Blog de comida</div>
-      </a
-    >
+    </a>
+
     <button
       class="navbar-toggler"
       type="button"
@@ -22,21 +22,30 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'home' %}">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'nosotros' %}">Nosotros</a>
-        </li>
-        <li class="nav-item"><a class="nav-link" href="#!">Contacto</a></li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Blog</a>
-        </li>
-        
-      </ul>
       {% if user.is_authenticated %}
+        <!-- Opciones de la navbar para usuarios logueados -->
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'acerca_de' %}">Acerca de</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"  href="{% url 'categorias' %}">Categorías</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'add_articulo' %}">Agregar Artículo</a> <!-- Nueva opción, ejemplo -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'crear_categoria' %}">Agregar Categoría</a> 
+          </li>
+        </ul>
         <div class="d-flex justify-content-end ms-2">
           <span class="badge d-inline-flex align-items-center p-1 pe-2 text-light-emphasis bg-light text-bg-light border border-dark-subtle rounded-pill ">
             <img class="rounded-circle me-1" width="30" height="30" src="{{ user.imagen }}" alt="">
@@ -86,32 +95,35 @@
 
             {% comment %} LOGOUT {% endcomment %}
             <span class="vr mx-2 bg-dark"></span>
-            <a
-              type="button"
-              class="btn btn-outline-danger rounded-pill btn-sm mx-0 me-0" aria-label="Small button"
-              href="{% url 'logout' %}"
-              >
-                Logout
+            <a type="button" class="btn btn-outline-danger rounded-pill btn-sm mx-0 me-0" aria-label="Small button" href="{% url 'logout' %}">
+              Logout
             </a>
-          
           </span>
-        </div>    
+        </div>
       {% else %}
         {% comment %} VISITANTE/PUBLICO {% endcomment %}
-        <div class="text-end text-center">
-          <a
-            type="button"
-            class="btn btn-outline-light mx-2 me-2"
-            href="{% url 'login' %}"
-            >
-              Login
-          </a>
-          <a type="button" class="btn btn-warning" href="{% url 'registro' %}">
-            Registro
-          </a>
-        </div>
+        <!-- Opciones de la navbar para usuarios no logueados -->
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'acerca_de' %}">Acerca de</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'categorias' %}">Categorías</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'registro' %}">Registro</a>
+          </li>
+        </ul>
       {% endif %}
-
     </div>
   </div>
 </nav>
