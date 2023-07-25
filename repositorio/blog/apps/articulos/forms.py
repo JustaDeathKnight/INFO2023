@@ -2,7 +2,6 @@ from django import forms
 from .models import Articulo, Comentario, Categoria
 
 class ArticuloForm(forms.ModelForm):
-    
     class Meta:
         model = Articulo
         fields = ['titulo', 'resumen', 'contenido', 'imagen', 'categoria_articulo']
