@@ -25,12 +25,12 @@ urlpatterns = [
     
     # estructura de la ruta:
     # path('ruta', views.vista_a_ejecutar, name='nombre_ruta')
-    # Ruta para la vista Home
-    path('', views.Home, name='home'),
-    path('nosotros/', views.Nosotros, name='nosotros'),
-    
+   
     #urls aplicaciones
     # path('noticias/', include('apps.noticias.urls')),
-    path('usuarios/', include('apps.usuarios.urls')),
+    path('', include('apps.paginas.urls')),  # Incluye las URLs de la app "paginas"
+    path('', include('apps.articulos.urls')),  # Incluye las URLs de la app "articulos"
+    path('', include('apps.usuarios.urls')),  # Incluye las URLs de la app "articulos"
+    
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

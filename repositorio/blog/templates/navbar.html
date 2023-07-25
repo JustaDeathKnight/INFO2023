@@ -5,12 +5,12 @@
   <div class="container-fluid">
     <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}"
       >
-      <span class="badge p-1 pe-0 bg-light text-bg-light border border-dark-subtle rounded-pill">
-        <img class="rounded-circle me-1" width="30" height="30" src="{% static 'img/donut_food_icon.svg' %}" alt="">
+      <span class="badge p-0 pe-0 bg-light text-bg-light border border-dark-subtle rounded-pill">
+        <img class="rounded-circle me-0" width="30" height="30" src="{% static 'img/donut_food_icon.svg' %}" alt="">
       </span>
       <div class='mx-2'>Blog de comida</div>
-      </a
-    >
+    </a>
+
     <button
       class="navbar-toggler"
       type="button"
@@ -22,51 +22,112 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'home' %}">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'nosotros' %}">Nosotros</a>
-        </li>
-        <li class="nav-item"><a class="nav-link" href="#!">Contacto</a></li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Blog</a>
-        </li>
-        
-      </ul>
       {% if user.is_authenticated %}
+        <!-- Opciones de la navbar para usuarios logueados -->
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'acerca_de' %}">Acerca de</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"  href="{% url 'categorias' %}">Categorías</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'add_articulo' %}">Agregar Artículo</a> <!-- Nueva opción, ejemplo -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'crear_categoria' %}">Agregar Categoría</a> 
+          </li>
+        </ul>
         <div class="d-flex justify-content-end ms-2">
           <span class="badge d-inline-flex align-items-center p-1 pe-2 text-light-emphasis bg-light text-bg-light border border-dark-subtle rounded-pill ">
-            <img class="rounded-circle me-1" width="30" height="30" src="{{ user.imagen }}" alt="">
+            <img class="rounded-circle me-1" width="30" height="30" src="{{ user.imagen.url  }}" alt="">
             {{ user.username }}
+
+            {% comment %} SUPER {% endcomment %}
+            {% if user.is_superuser %}
+              <!-- Button trigger modal -->
+              <button class="btn btn-warning btn-sm rounded-pill mx-2 me-0" data-bs-toggle="modal" data-bs-target="#opcionesAdmin">Admin</button>
+
+              <!-- Modal -->
+              <div class="modal fade" id="opcionesAdmin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Menu Administrador</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <a type="button" class="btn btn-dark m-0" href="{% url 'colaborador' %}">
+                        Nuevo Colaborador
+                      </a>
+                      <a type="button" class="btn btn-dark" href="{% url 'crear_categoria' %}">
+                        Crear Categoria
+                      </a>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            {% else %}
+              {% comment %} COLABORADOR {% endcomment %}
+              {% if user.is_colaborador %}
+                <span class="btn btn-info btn-sm rounded-pill mx-2 me-0 disabled" href="#-1">Colaborador</span>
+              {% else %}
+                {% comment %} MIEMBRO {% endcomment %}
+                <span class="btn btn-success btn-sm rounded-pill mx-2 me-0 disabled" href="#-1">Miembro</span>
+              {% endif %}
+            {% endif %}
+
+            {% comment %} LOGOUT {% endcomment %}
             <span class="vr mx-2 bg-dark"></span>
+            <a type="button" class="btn btn-outline-danger rounded-pill btn-sm mx-0 me-0" aria-label="Small button" href="{% url 'logout' %}">
+              Logout
+            </a>
+          </span>
+        </div>
+      {% else %}
+        {% comment %} VISITANTE/PUBLICO {% endcomment %}
+        <!-- Opciones de la navbar para usuarios no logueados -->
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'acerca_de' %}">Acerca de</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'categorias' %}">Categorías</a>
+          </li>
+          <div class="text-end text-center">
             <a
               type="button"
-              class="btn btn-outline-danger rounded-pill btn-sm mx-0 me-0" aria-label="Small button"
-              href="{% url 'logout' %}"
+              class="btn btn-outline-light mx-2 me-2"
+              href="{% url 'login' %}"
               >
-                Logout
+                Login
             </a>
-          
-          </span>
-        </div>    
-      {% else %}
-        <div class="text-end text-center">
-          <a
-            type="button"
-            class="btn btn-outline-light mx-2 me-2"
-            href="{% url 'login' %}"
-            >
-              Login
-          </a>
-          <a type="button" class="btn btn-warning" href="{% url 'registro' %}">
-            Registro
-          </a>
-        </div>
+            <a type="button" class="btn btn-warning" href="{% url 'registro' %}">
+              Registro
+            </a>
+          </div>
+        </ul>
       {% endif %}
-
     </div>
   </div>
 </nav>
+
+
