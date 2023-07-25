@@ -31,11 +31,10 @@ class Articulo(models.Model):
     resumen = models.CharField(max_length=100, null=True)
     contenido = models.TextField()
     fecha_publicacion = models.DateTimeField(auto_now_add=True)
-    imagen = models.ImageField(upload_to='articulos', default='iconos/default_icon.png')
-    categoria_articulo = models.ForeignKey(Categoria, on_delete=models.CASCADE)
-    autor = models.ForeignKey(Usuario, on_delete=models.CASCADE)
-    comentarios = models.ManyToManyField(Comentario, related_name='articulo', blank=True)
-
+    imagen = models.ImageField(upload_to = 'articulos', default='iconos/default_icon.png')
+    categoria_articulo = models.ForeignKey(Categoria, on_delete= models.CASCADE)
+    autor = models.ForeignKey(Usuario, on_delete=models.CASCADE, default=Usuario.objects.filter(is_superuser=True).first().pk) 
+    comentarios = models.ManyToManyField(Comentario, related_name='articulo')
 
     def __str__(self):
         return self.titulo
