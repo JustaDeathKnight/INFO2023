@@ -18,6 +18,8 @@ class Comentario(models.Model):
     contenido = models.TextField()
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fecha_modificacion = models.DateTimeField(auto_now=True)
+  # Cadena de texto en ForeignKey
+
 
     def __str__(self):
         return f"Comentario por {self.autor.username} en {self.fecha_creacion}"
@@ -25,8 +27,8 @@ class Comentario(models.Model):
 
 
 class Articulo(models.Model):
-    titulo = models.CharField(max_length= 50)
-    resumen = models.CharField(max_length = 100, null =True)
+    titulo = models.CharField(max_length=50)
+    resumen = models.CharField(max_length=100, null=True)
     contenido = models.TextField()
     fecha_publicacion = models.DateTimeField(auto_now_add=True)
     imagen = models.ImageField(upload_to = 'articulos', default='iconos/default_icon.png')
