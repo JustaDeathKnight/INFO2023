@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Categoria, Articulo, Comentario
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from apps.usuarios.models import Usuario
 from .forms import ArticuloForm, ComentarioForm, CategoriaForm
 
 
 # Create your views here.
+# Restricción para las vistas que solo pueden ser accedidas por colaboradores y superusuarios
+# def es_colaborador_o_superuser(user):
+#     return user.is_authenticated and (user.is_colaborador or user.is_superuser)
 
 
 def articulos_por_categoria(request, categoria_id):
@@ -16,6 +19,7 @@ def articulos_por_categoria(request, categoria_id):
 
 
 @login_required
+# @user_passes_test(es_colaborador_o_superuser)
 def AddArticulo(request):
     if request.method == 'POST':
         form = ArticuloForm(request.POST, request.FILES)
@@ -41,6 +45,7 @@ def AddArticulo(request):
     return render(request, 'articulos/add_articulo.html', {'form': form, 'categorias': categorias})
 
 @login_required
+# @user_passes_test(es_colaborador_o_superuser)
 def editar_articulo(request, pk):
     articulo = get_object_or_404(Articulo, pk=pk)
     
@@ -55,6 +60,7 @@ def editar_articulo(request, pk):
     return render(request, 'articulos/editar_articulo.html', {'form': form, 'articulo': articulo})
 
 @login_required
+# @user_passes_test(es_colaborador_o_superuser)
 def borrar_articulo(request, pk):
     articulo = get_object_or_404(Articulo, pk=pk)
     if request.method == 'POST':
@@ -84,8 +90,8 @@ def detalle_articulo(request, pk):
     if comentario_id:
         comentario = get_object_or_404(Comentario, id=comentario_id)
 
-        # Verificar si el usuario es el autor del comentario o un administrador
-        if request.user == comentario.autor or request.user.is_staff:
+        # Verificar si el usuario es el autor del comentario, un colaborador creador del artículo o un administrador
+        if request.user == comentario.autor or request.user == comentario.articulo.autor or request.user.is_staff:
             if 'editar' in request.GET:
                 # Renderizar la plantilla para editar comentario
                 form = ComentarioForm(instance=comentario)
@@ -103,7 +109,7 @@ def detalle_articulo(request, pk):
     return render(request, 'articulos/detalle_articulo.html', {'articulo': articulo, 'form': form})
 
 
-
+@login_required
 def agregar_comentario(request, articulo_id):
     articulo = get_object_or_404(Articulo, id=articulo_id)
 
@@ -120,7 +126,8 @@ def agregar_comentario(request, articulo_id):
 
     return render(request, 'agregar_comentario.html', {'form': form})
 
-
+@login_required
+# @user_passes_test(es_colaborador_o_superuser)
 def crear_categoria(request):
     if request.method == 'POST':
         form = CategoriaForm(request.POST, request.FILES)
