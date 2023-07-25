@@ -15,14 +15,17 @@
 
       <!-- Comentarios -->
       {% for comentario in articulo.comentarios.all %}
-      <div>
-        <p>{{ comentario.contenido }}</p>
-        {% if user == comentario.autor %}
-          <a href="{% url 'detalle_articulo' pk=articulo.id %}?comentario_id={{ comentario.id }}&editar">Editar comentario</a>
-          <a href="{% url 'detalle_articulo' pk=articulo.id %}?comentario_id={{ comentario.id }}&borrar">Borrar comentario</a>
-        {% endif %}
-      </div>
-    {% endfor %}
+        <div>
+          <p>{{ comentario.contenido }}</p>
+          {% if user == comentario.autor %}
+            <form method="post">
+              {% csrf_token %}
+              <a href="{% url 'detalle_articulo' pk=articulo.id %}?comentario_id={{ comentario.id }}&editar">Editar comentario</a>
+              <a href="{% url 'detalle_articulo' pk=articulo.id %}?comentario_id={{ comentario.id }}&borrar">Borrar comentario</a>
+            </form>
+          {% endif %}
+        </div>
+      {% endfor %}
 
       <!-- Formulario para agregar comentario -->
       {% if user.is_authenticated %}

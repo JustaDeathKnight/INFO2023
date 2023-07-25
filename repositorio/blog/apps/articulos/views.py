@@ -63,27 +63,11 @@ def borrar_articulo(request, pk):
     return render(request, 'articulos/borrar_articulo.html', {'articulo': articulo})
 
 
-# def detalle_articulo(request, pk):
-#     articulo = get_object_or_404(Articulo, pk=pk)
-
-#     if request.method == 'POST':
-#         form = ComentarioForm(request.POST)
-#         if form.is_valid():
-#             comentario = form.save(commit=False)
-#             comentario.autor = request.user
-#             comentario.save()
-#             articulo.comentarios.add(comentario)
-#             return redirect('detalle_articulo', pk=pk)
-#     else:
-#         form = ComentarioForm()
-
-#     return render(request, 'articulos/detalle_articulo.html', {'articulo': articulo, 'form': form})
-
 def detalle_articulo(request, pk):
     articulo = get_object_or_404(Articulo, pk=pk)
 
+    # Verificar si el formulario de comentario se envió
     if request.method == 'POST':
-        # Comprobamos si se está enviando el formulario para agregar un nuevo comentario
         form = ComentarioForm(request.POST)
         if form.is_valid():
             comentario = form.save(commit=False)
@@ -91,35 +75,34 @@ def detalle_articulo(request, pk):
             comentario.save()
             articulo.comentarios.add(comentario)
             return redirect('detalle_articulo', pk=pk)
+
     else:
         form = ComentarioForm()
 
-    # Si se incluye el comentario_id en la solicitud, significa que se quiere editar o borrar un comentario
+    # Verificar si se envió el comentario_id para editar o borrar
     comentario_id = request.GET.get('comentario_id')
     if comentario_id:
         comentario = get_object_or_404(Comentario, id=comentario_id)
 
-        # Verificar si el usuario que quiere editar o borrar el comentario es el autor del comentario o un administrador
+        # Verificar si el usuario es el autor del comentario o un administrador
         if request.user == comentario.autor or request.user.is_staff:
             if 'editar' in request.GET:
-                # Modo de edición del comentario
-                if request.method == 'POST':
-                    form = ComentarioForm(request.POST, instance=comentario)
-                    if form.is_valid():
-                        form.save()
-                        return redirect('detalle_articulo', pk=pk)
-                else:
-                    form = ComentarioForm(instance=comentario)
-                return render(request, 'articulos/detalle_articulo.html', {'articulo': articulo, 'form': form, 'comentario_id': comentario_id})
+                # Renderizar la plantilla para editar comentario
+                form = ComentarioForm(instance=comentario)
+                return render(request, 'articulos/editar_comentario.html', {'form': form})
+
             elif 'borrar' in request.GET:
-                # Modo de borrado del comentario
+                # Verificar si se envió el formulario para borrar el comentario
                 if request.method == 'POST':
                     comentario.delete()
                     return redirect('detalle_articulo', pk=pk)
-                else:
-                    return render(request, 'articulos/detalle_articulo.html', {'articulo': articulo, 'comentario_id': comentario_id})
+
+                # Renderizar la plantilla para borrar comentario
+                return render(request, 'articulos/borrar_comentario.html', {'comentario': comentario})
 
     return render(request, 'articulos/detalle_articulo.html', {'articulo': articulo, 'form': form})
+
+
 
 def agregar_comentario(request, articulo_id):
     articulo = get_object_or_404(Articulo, id=articulo_id)
@@ -137,47 +120,6 @@ def agregar_comentario(request, articulo_id):
 
     return render(request, 'agregar_comentario.html', {'form': form})
 
-from django.shortcuts import get_object_or_404, redirect, render
-from .models import Articulo, Comentario
-from .forms import ComentarioForm
-# ...
-
-# @login_required
-# def editar_comentario(request, pk, comentario_id):
-#     articulo = get_object_or_404(Articulo, pk=pk)
-#     comentario = get_object_or_404(Comentario, pk=comentario_id)
-
-#     # Verificar si el usuario que quiere editar el comentario es el autor del comentario o un administrador
-#     if request.user == comentario.autor or request.user.is_staff:
-#         if request.method == 'POST':
-#             form = ComentarioForm(request.POST, instance=comentario)
-#             if form.is_valid():
-#                 form.save()
-#                 return redirect('detalle_articulo', pk=pk)
-#         else:
-#             form = ComentarioForm(instance=comentario)
-#         return render(request, 'articulos/editar_comentario.html', {'form': form})
-#     else:
-#         # Aquí puedes manejar el caso en que el usuario no tenga permisos para editar el comentario
-#         # Por ejemplo, puedes redirigirlo a otra página o mostrar un mensaje de error.
-#         pass
-
-#     return redirect('detalle_articulo', pk=pk)
-
-# @login_required
-# def borrar_comentario(request, pk, comentario_id):
-#     articulo = get_object_or_404(Articulo, pk=pk)
-#     comentario = get_object_or_404(Comentario, pk=comentario_id)
-
-#     # Verificar si el usuario que quiere borrar el comentario es el autor del comentario o un administrador
-#     if request.user == comentario.autor or request.user.is_staff:
-#         comentario.delete()
-#     else:
-#         # Aquí puedes manejar el caso en que el usuario no tenga permisos para borrar el comentario
-#         # Por ejemplo, puedes redirigirlo a otra página o mostrar un mensaje de error.
-#         pass
-
-#     return redirect('detalle_articulo', pk=pk)
 
 def crear_categoria(request):
     if request.method == 'POST':
