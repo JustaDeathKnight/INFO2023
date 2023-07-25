@@ -112,12 +112,18 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{% url 'categorias' %}">Categorías</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'login' %}">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'registro' %}">Registro</a>
-          </li>
+          <div class="text-end text-center">
+            <a
+              type="button"
+              class="btn btn-outline-light mx-2 me-2"
+              href="{% url 'login' %}"
+              >
+                Login
+            </a>
+            <a type="button" class="btn btn-warning" href="{% url 'registro' %}">
+              Registro
+            </a>
+          </div>
         </ul>
       {% endif %}
     </div>
