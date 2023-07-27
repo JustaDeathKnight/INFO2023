@@ -28,22 +28,22 @@
         <!-- Opciones de la navbar para usuarios logueados -->
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'home' %}">Inicio</a>
+            <a class="nav-link  {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'acerca_de' %}">Acerca de</a>
+            <a class="nav-link {% if request.resolver_match.url_name == 'acerca_de' %}active{% endif %}" href="{% url 'acerca_de' %}">Acerca de</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
+            <a class="nav-link {% if request.resolver_match.url_name == 'contacto' %}active{% endif %}" href="{% url 'contacto' %}">Contacto</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link"  href="{% url 'categorias' %}">Categorías</a>
+            <a class="nav-link {% if request.resolver_match.url_name == 'categorias' %}active{% endif %}"  href="{% url 'categorias' %}">Categorías</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'add_articulo' %}">Agregar Artículo</a> <!-- Nueva opción, ejemplo -->
+            <a class="nav-link {% if request.resolver_match.url_name == 'add_articulo' %}active{% endif %}" href="{% url 'add_articulo' %}">Agregar Artículo</a> <!-- Nueva opción, ejemplo -->
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'crear_categoria' %}">Agregar Categoría</a> 
+          <li class="nav-item {% if request.resolver_match.url_name == 'crear_categoria' %}active{% endif %}">
+            <a class="nav-link " href="{% url 'crear_categoria' %}">Agregar Categoría</a> 
           </li>
         </ul>
         <div class="d-flex justify-content-end ms-2">
@@ -101,16 +101,16 @@
         <!-- Opciones de la navbar para usuarios no logueados -->
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'home' %}">Inicio</a>
+            <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'acerca_de' %}">Acerca de</a>
+            <a class="nav-link {% if request.resolver_match.url_name == 'acerca_de' %}active{% endif %}" href="{% url 'acerca_de' %}">Acerca de</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
+            <a class="nav-link {% if request.resolver_match.url_name == 'contacto' %}active{% endif %}" href="{% url 'contacto' %}">Contacto</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'categorias' %}">Categorías</a>
+            <a class="nav-link {% if request.resolver_match.url_name == 'categorias' %}active{% endif %}" aria-current="page" href="{% url 'categorias' %}">Categorías</a>
           </li>
           <div class="text-end text-center">
             <a
