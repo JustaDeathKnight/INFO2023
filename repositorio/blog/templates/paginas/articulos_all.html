@@ -48,17 +48,18 @@
 
         <div class="row">
 
-            <div class="col-3">
-
-                <img src="{{ articulo.imagen.url }}" alt="{{ articulo.titulo }}" class="img-fluid">
-
+            <div class="col-2">
+                <!-- Agregar la clase aspect-ratio al contenedor de la imagen -->
+                <div class="aspect-ratio aspect-ratio-1x1">
+                    <img src="{{ articulo.imagen.url }}" alt="{{ articulo.titulo }}"
+                        class="img-fluid aspect-ratio-item">
+                </div>
             </div>
 
-            <div class="col-9">
+            <div class="col-10">
 
                 <h2 class="titulos-subtitulos">{{articulo.titulo}}</h2>
                 <p class="parrafos">{{articulo.resumen}}</p>
-                <p class="parrafos">{{articulo.contenido}}</p>
                 <a href="{% url 'detalle_articulo' articulo.id %}" class="btn btn-primary">Leer más</a>
 
             </div>
@@ -69,6 +70,7 @@
 
 </div>
 {% endfor %}
+
 
 
 {% endblock contenido %}
