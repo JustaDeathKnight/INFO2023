@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+<h2 class="titulos-subtitulos"> TODOS LOS ARTICULOS</h2>
+
+<!-- Formulario de filtros -->
+<div class="card card-body fondo-semi-transparente">
+
+    <!-- Formulario de filtros -->
+    <form method="get" class="form-inline mb-3">
+        <div class="form-group mr-3 mt-1">
+            <label class="parrafos" for="categoria">Filtrar por categoría:</label>
+            <select name="categoria" id="categoria" class="form-control mt-2">
+                <option value="">Todas las categorías</option>
+                {% for categoria in categorias %}
+                <option value="{{ categoria.id }}">{{ categoria.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group mr-3 mt-1">
+            <label class="parrafos" for="orden">Ordenar por:</label>
+            <select name="orden" id="orden" class="form-control mt-2">
+                <option value="titulo">Título</option>
+                <option value="fecha_publicacion">Fecha de publicación</option>
+            </select>
+        </div>
+        <div class="form-group mr-3 mt-1">
+            <label class="parrafos" for="direccion">Orden:</label>
+            <select name="direccion" id="direccion" class="form-control mt-2">
+                <option value="asc">Ascendente</option>
+                <option value="desc">Descendente</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Filtrar</button>
+    </form>
+
+</div>
+
+<div class="col-md-6 text-right mt-3">
+    <a href="{% url 'categorias' %}" class="btn btn-primary">Ver Todas las Categorías</a>
+</div>
+
+<!-- Listado de Articulos -->
+{% for articulo in articulos %}
+<div class="p-3">
+
+    <div class="card card-body fondo-semi-transparente">
+
+        <div class="row">
+
+            <div class="col-3">
+
+                <img src="{{ articulo.imagen.url }}" alt="{{ articulo.titulo }}" class="img-fluid">
+
+            </div>
+
+            <div class="col-9">
+
+                <h2 class="titulos-subtitulos">{{articulo.titulo}}</h2>
+                <p class="parrafos">{{articulo.resumen}}</p>
+                <p class="parrafos">{{articulo.contenido}}</p>
+                <a href="{% url 'detalle_articulo' articulo.id %}" class="btn btn-primary">Leer más</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+{% endfor %}
+
+
+{% endblock contenido %}

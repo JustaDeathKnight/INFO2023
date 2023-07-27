@@ -26,6 +26,9 @@
       type="image/x-icon"
       href="{% static 'img/favicon.ico' %}"
     />
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
+
     <!-- Core theme CSS (includes Bootstrap)-->
     {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" /> {% endcomment %}
     {% block css %}{% endblock css %}
@@ -35,7 +38,14 @@
 
   <body>
     <header>{% include 'navbar.html' %}</header>
-    <main>{% block contenido %} {% endblock contenido %}</main>
+    <main>
+      <div class="container p-4">
+      
+      {% block contenido %}
+      {% endblock contenido %}
+
+      </div>
+    </main>
     <footer>
       <!-- place footer here -->
     </footer>
