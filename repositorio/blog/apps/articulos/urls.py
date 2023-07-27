@@ -1,4 +1,6 @@
 from django.urls import path
+from django.conf.urls.static import static
+from django.conf import settings
 from . import views
 
 urlpatterns = [
@@ -12,4 +14,4 @@ urlpatterns = [
     # path('articulo/<int:pk>/editar-comentario/<int:comentario_id>/', views.editar_comentario, name='editar_comentario'),
     path('crear_categoria/', views.crear_categoria, name='crear_categoria'),
 
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
