@@ -66,3 +66,8 @@ body {
   height: 100%;
   object-fit: cover; /* Para recortar la imagen y mantener el aspecto */
 }
+
+/* Estilo para reducir el margen entre las tarjetas */
+.card-filtros {
+  margin-bottom: 0.5rem;
+}
