@@ -3,6 +3,7 @@
 <html lang="es">
 
 <head>
+  
   <!-- Required meta tags -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -22,7 +23,7 @@
   <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}" />
 
   <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
-
+  <!-- <link rel="stylesheet" href="{% static '/css/main.css'%}"/>-->
   <!-- Core theme CSS (includes Bootstrap)-->
   {% comment %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" /> {% endcomment %}
@@ -36,8 +37,52 @@
   <main>
     <div class="container p-4">
 
-      {% block contenido %}
-      {% endblock contenido %}
+    
+
+
+      <!--                       aca contenido agregado -->
+
+    <main class="content"> 
+            
+     
+            {% block contenido %} 
+            
+            {% endblock contenido %}
+            
+       
+        
+    </main>
+
+    <aside class="sidebar"> 
+        <div> 
+            <img src="https://fakeimg.pl/640x360" alt=""width="200" height="200">
+            <p> lorem </p>      
+            
+        </div>
+        <div> 
+            <img src="https://fakeimg.pl/640x360" alt=""width="200" height="200">
+            <p> lorem </p>      
+            
+        </div>
+        <div> 
+            <img src="https://fakeimg.pl/640x360" alt=""width="200" height="200">
+            <p> lorem </p>      
+            
+        </div>
+        <div> 
+            <img src="https://fakeimg.pl/640x360" alt=""width="200" height="200">
+            <p> lorem </p>      
+            
+        </div>
+
+        
+        
+        
+    </aside>
+
+
+</div>  
+
 
     </div>
   </main>
