@@ -20,7 +20,7 @@ body {
 
 /* Estilo para un área con fondo semitransparente */
 .fondo-semi-transparente {
-  background-color: rgba(85, 80, 80, 0.7); /* Fondo blanco con opacidad del 70% */
+  background-color: rgba(172, 164, 164, 0.6); /* Fondo blanco con opacidad del 70% */
   padding: 10px; /* Ajusta el padding según tus necesidades */
   border: 2px solid #333131;
 }
@@ -71,3 +71,5 @@ body {
 .card-filtros {
   margin-bottom: 0.5rem;
 }
+
+
