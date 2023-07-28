@@ -16,7 +16,8 @@
       <!-- Comentarios -->
       {% for comentario in articulo.comentarios.all %}
         <div>
-          <p>{{ comentario.contenido }}</p>
+          <p>{{ comentario.contenido }} {{ comentario.fecha_creacion }}</p>
+          
           {% if user == comentario.autor %}
             <form method="post">
               {% csrf_token %}

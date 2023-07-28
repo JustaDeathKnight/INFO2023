@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{%load static %}
+
+{% block contenido %}
+<h2 class="titulos-subtitulos"> TODOS LOS ARTICULOS</h2>
+
+<div class="container">
+    <!-- Filtros con collapse de Bootstrap -->
+    <div class="row">
+        <div class="col-md-9">
+            <h2 class="btn btn-secondary parrafos" data-bs-toggle="collapse" href="#collapse-filtros" role="button"
+                aria-expanded="false" aria-controls="collapse-filtros">
+                Filtros de artículos <i class="bi bi-chevron-down"></i>
+            </h2>
+        </div>
+        <!-- Boton para ir a todas las categorias -->
+        <div class="col-md-3 mt-3 d-flex justify-content-end">
+            <a href="{% url 'categorias' %}" class="btn btn-primary my-2">Ver Todas las Categorías</a>
+        </div>
+    </div>
+
+    <div class="collapse" id="collapse-filtros">
+        <div class="card">
+            <div class="card-body fondo-semi-transparente">
+                <form method="get" class="form-inline mb-3">
+                    <div class="form-group mr-3 mt-1">
+                        <label for="categoria">Filtrar por categoría:</label>
+                        <select name="categoria" id="categoria" class="form-control mt-2">
+                            <option value="">Todas las categorías</option>
+                            {% for categoria in categorias %}
+                            <option value="{{ categoria.id }}">{{ categoria.nombre }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group mr-3 mt-1">
+                        <label for="orden">Ordenar por:</label>
+                        <select name="orden" id="orden" class="form-control mt-2">
+                            <option value="titulo">Título</option>
+                            <option value="fecha_publicacion">Fecha de publicación</option>
+                        </select>
+                    </div>
+                    <div class="form-group mr-3 mt-1">
+                        <label for="direccion">Orden:</label>
+                        <select name="direccion" id="direccion" class="form-control mt-2">
+                            <option value="asc">Ascendente</option>
+                            <option value="desc">Descendente</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Filtrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Fin del collapse de filtros -->
+    
+    <div class="row mt-4">
+        <!-- Bloque de artículos -->
+        <div class="col-md-9">
+            {% for articulo in articulos %}
+            <div class="card mb-3 fondo-semi-transparente">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="{{ articulo.imagen.url }}" class="rounded-square-image" alt="{{ articulo.titulo }}">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ articulo.titulo }}</h5>
+                            <p class="card-text">{{ articulo.resumen }}</p>
+                            <a href="{% url 'detalle_articulo' articulo.id %}" class="btn btn-primary">Leer más</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Columna con lista -->
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Lista de Categorías</h5>
+                    <ul class="list-group">
+                        {% for categoria in categorias %}
+                        <li class="list-group-item">
+                            <a href="{% url 'articulos_por_categoria' categoria.id %}">{{ categoria.nombre }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock contenido %}
+<script src="{% static 'js/filtro.js' %}"></script>
