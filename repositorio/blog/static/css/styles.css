@@ -4,23 +4,27 @@ body {
   background-size: cover; */
 }
 
-.titulos-subtitulos{
+.titulos-subtitulos {
   color: #e67104f1;
   -webkit-text-stroke: 1px #000; /* Borde de 1px de grosor en color negro */
-  
 }
 
-.parrafos{
+.parrafos {
   color: #fff6f6;
 }
 
-.listas{
+.listas {
   color: #fff6f6;
 }
 
 /* Estilo para un área con fondo semitransparente */
 .fondo-semi-transparente {
-  background-color: rgba(172, 164, 164, 0.6); /* Fondo blanco con opacidad del 70% */
+  background-color: rgba(
+    172,
+    164,
+    164,
+    0.6
+  ); /* Fondo blanco con opacidad del 70% */
   padding: 10px; /* Ajusta el padding según tus necesidades */
   border: 2px solid #333131;
 }
@@ -37,18 +41,16 @@ body {
   background-color: transparent;
 }
 
-.card-categorias{
+.card-categorias {
   max-width: 250px; /* Puedes ajustar este valor según tus necesidades */
   margin: 0 auto; /* Centrar horizontalmente las tarjetas */
 }
-
 
 /* Estilo para el contenedor del texto dentro de las tarjetas */
 .texto-tarjeta {
   max-height: 100%; /* Puedes ajustar este valor según tus necesidades */
   overflow: hidden; /* Ocultar el contenido que supere la altura máxima */
 }
-
 
 /* Estilo para la clase aspect-ratio */
 .aspect-ratio {

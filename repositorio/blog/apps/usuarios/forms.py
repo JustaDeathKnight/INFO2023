@@ -32,7 +32,8 @@ class ColabForm(UserCreationForm):
         label='Contraseña', widget=forms.PasswordInput, required=True)
     password2 = forms.CharField(
         label='Confirmar Contraseña', widget=forms.PasswordInput, required=True)
-    is_colaborador = forms.BooleanField(label='Colaborador', widget=forms.CheckboxInput, required=False)
+    is_colaborador = forms.BooleanField(
+        label='Colaborador', widget=forms.CheckboxInput, required=False)
 
     class Meta:
         model = Usuario
@@ -46,3 +47,23 @@ class ColabForm(UserCreationForm):
             'is_colaborador'
         ]
 
+
+class CambiarImagenForm(forms.ModelForm):
+    class Meta:
+        model = Usuario
+        fields = [
+            'imagen'
+        ]
+
+    def __init__(self, *args, **kwargs):
+        super(CambiarImagenForm, self).__init__(*args, **kwargs)
+        self.fields['imagen'].required = True
+
+    def clean_imagen(self):
+        imagen = self.cleaned_data.get('imagen')
+        if imagen:
+            if imagen.size > 1024*1024*2:
+                raise forms.ValidationError('La imagen no puede pesar más de 2MB')
+            return imagen
+        else:
+            raise forms.ValidationError('No se ha podido leer la imagen')
