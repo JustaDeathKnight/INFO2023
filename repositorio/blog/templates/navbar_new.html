@@ -70,8 +70,8 @@
           {% if user.is_colaborador or user.is_superuser %}
         
             <!-- test -->
-            <div class="d-flex justify-content-center ms-2 me-1">
-            <div class="dropdown">
+            <div class="d-flex justify-content-center ms-0 ms-lg-2">
+            <div class="dropdown me-0 me-lg-1">
               <button class="btn btn-outline-light dropdown-toggle rounded-pill" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Añadir
               </button>
@@ -84,12 +84,12 @@
             <!-- test -->
           
           {% endif %}
-        
-          <div class="d-flex justify-content-end ms-2">
+          
+          <div class="d-flex justify-content-end pt-2 pt-lg-0 ms-2">
             <span
               class="dropdown badge d-inline-flex align-items-center p-1 pe-2 text-light-emphasis bg-light text-bg-light border border-dark-subtle rounded-pill"
             >
-            <!-- Esta parte contiene un dropdown junto con un modal para cambiar la imagen del usuario -->
+            <!-- Esta parte contiene un dropdown para cambiar la imagen del usuario -->
             <div class="d-flex justify-content-center">
               <img
                 class="rounded-circle me-1 dropdown-toggle "

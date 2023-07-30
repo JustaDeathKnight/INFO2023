@@ -11,22 +11,23 @@
     {% comment %} {{ form.as_p }}
     <button type="submit">Guardar categoría</button> {% endcomment %}
 
-    <div class="modal modal-sheet position-static d-block bg-body-secondary p-5 m-0" tabindex="-1" role="dialog" id="modalSignin">
+    <div class="modal modal-sheet position-static d-block bg-body-secondary p-5 m-0" tabindex="-1" role="dialog"
+      id="modalSignin">
       <div class="modal-dialog" role="document">
         <div class="modal-content rounded-4 shadow fondo-semi-transparente">
           <div class="modal-header pt-4 pb-4 ps-5 pe-5 border-bottom-0">
             <h2 class="fw-bold mb-0 fs-2 titulos-subtitulos">Crear Categoría</h2>
-            <a class="btn-close" type="button"aria-label="Close"  href="{% url 'home' %}"></a>
+            <a class="btn-close" type="button" aria-label="Close" href="{% url 'home' %}"></a>
           </div>
-  
+
           <div class="modal-body px-5 pt-0">
             <form method="POST">
               {% csrf_token %}
-              
+
               {% comment %} NOMBRE DE CATEGORIA {% endcomment %}
               <div class="form-floating mb-3">
-                <input type="text" 
-                name="nombre" class="form-control rounded-3" id="floatingInputUser" placeholder="Nombre de Categoría" required> 
+                <input type="text" name="nombre" class="form-control rounded-3" id="floatingInputUser"
+                  placeholder="Nombre de Categoría" required>
                 <label for="floatingInput">Nombre de Categoría</label>
               </div>
 
@@ -38,25 +39,25 @@
 
               {% comment %} FORM ERROR {% endcomment %}
               {{form.errors}}
-              
+
               {% comment %} MESSAGES {% endcomment %}
               {% if messages %}
-                {% for message in messages %}
-                  {% if message.tags == 'success' %}
-                    <div class="alert alert-success text-center">{{ message }}</div>
-                  {% else %}
-                    <div class="alert alert-danger text-center">{{ message }}</div>
-                  {% endif %}
-                {% endfor %} 
+              {% for message in messages %}
+              {% if message.tags == 'success' %}
+              <div class="alert alert-success text-center">{{ message }}</div>
+              {% else %}
+              <div class="alert alert-danger text-center">{{ message }}</div>
               {% endif %}
-  
+              {% endfor %}
+              {% endif %}
+
               {% comment %} BUTTON {% endcomment %}
               <button class="w-100 mb-3 mt-2 btn btn-lg rounded-3 btn-primary" type="submit">Registrar</button>
-          
+
             </form>
           </div>
+        </div>
       </div>
-    </div>
 
   </form>
 </div>
