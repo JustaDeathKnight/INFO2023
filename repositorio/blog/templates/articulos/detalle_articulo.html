@@ -17,7 +17,9 @@
       <!-- Comentarios -->
       {% for comentario in articulo.comentarios.all %}
         <div>
-          <p>{{ comentario.contenido }} {{ comentario.fecha_creacion }}</p>
+          <p>{{ comentario.autor }} {{ comentario.fecha_creacion }}</p>
+          <p>{{ comentario.contenido }}</p>
+
           
           {% if user == comentario.autor or user.is_staff or user.is_colaborador %}
             <form method="post">
