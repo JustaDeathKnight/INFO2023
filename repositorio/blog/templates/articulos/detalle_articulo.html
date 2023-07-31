@@ -16,36 +16,33 @@
       
       <!-- Comentarios -->
       <div class="card container py-3" style="background-color: #e7effd;">
-        <div class="card-title ps-3 mb-0">
+        <div class="ps-3 mb-0">
           <h3 class="mb-0">Comentarios</h3>
         </div>
-      {% for comentario in articulo.comentarios.all %}
-          
-            <div class="container text-dark">
-              <div class="row d-flex justify-content-center">
-                <div class="col-11">
-                  <div class="d-flex flex-start pt-3 p-0">
-                    <img class="rounded-circle shadow-1-strong me-3"
-                      src="{{ comentario.autor.imagen.url }}" alt="avatar" width="65"
-                      height="65"/>
-                    <div class="card w-100">
-                      <div class="card-body p-4">
-                        <div class="">
-                          <h5>{{ comentario.autor }}</h5>
-                          <p class="small">{{ comentario.fecha_creacion.date }} - {{ comentario.fecha_creacion.time }}</p>
-                          <p>
-                            {{ comentario.contenido }}
-                          </p>
-          
-                          <div class="d-flex justify-content-end align-items-end">
-                            {% if user == comentario.autor or user.is_staff or user.is_colaborador %}
-                              <form method="post" action="{% url 'borrar_comentario' pk=articulo.id comentario_id=comentario.id %}">
-                                {% csrf_token %}
-                                <a class="btn btn-outline-dark btn-sm" href="{% url 'editar_comentario' pk=articulo.id comentario_id=comentario.id %}">Editar</a>
-                                <button class="btn btn-outline-danger btn-sm" type="submit">Borrar</button>
-                              </form>
-                            {% endif %}
-                          </div>
+        {% for comentario in articulo.comentarios.all %}
+          <div class="container text-dark">
+            <div class="row d-flex justify-content-center">
+              <div class="col-10">
+                <div class="d-flex flex-start pt-3 p-0">
+                  <img class="rounded-circle shadow-1-strong me-3"
+                    src="{{ comentario.autor.imagen.url }}" alt="avatar" width="65"
+                    height="65"/>
+                  <div class="card w-100">
+                    <div class="card-body p-4">
+                      <div class="">
+                        <h5>{{ comentario.autor }}</h5>
+                        <p class="small">{{ comentario.fecha_creacion.date }} - {{ comentario.fecha_creacion.time }}</p>
+                        <p>
+                          {{ comentario.contenido }}
+                        </p>
+                        <div class="d-flex justify-content-end align-items-end">
+                          {% if user == comentario.autor or user.is_staff or user.is_colaborador %}
+                            <form method="post" action="{% url 'borrar_comentario' pk=articulo.id comentario_id=comentario.id %}">
+                              {% csrf_token %}
+                              <a class="btn btn-outline-dark btn-sm" href="{% url 'editar_comentario' pk=articulo.id comentario_id=comentario.id %}">Editar</a>
+                              <button class="btn btn-outline-danger btn-sm" type="submit">Borrar</button>
+                            </form>
+                          {% endif %}
                         </div>
                       </div>
                     </div>
@@ -53,9 +50,8 @@
                 </div>
               </div>
             </div>
-          
-      {% endfor %}
-      </div>
+          </div>    
+        {% endfor %}
       </div>
 
       <!-- Formulario para agregar comentario -->
