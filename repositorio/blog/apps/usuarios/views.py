@@ -21,6 +21,8 @@ def user_login(request):
             return redirect('home')
         else:
             messages.error(request, 'Usuario o contraseña no validos')
+    if request.user.is_authenticated:
+        return redirect('home')
     return render(request, 'usuarios/login.html', {})
 
 
@@ -41,12 +43,14 @@ def user_register(request):
             messages.error(request, 'Error al crear el usuario')
     else:
         form = RegistroForm()
+    if request.user.is_authenticated:
+        return redirect('home')
     return render(request, 'usuarios/registro.html', {'form': form})
 
 # Verifica si el usuario es superusuario
 
 
-@user_passes_test(lambda u: u.is_superuser)
+@user_passes_test(lambda u: u.is_superuser, login_url='home')
 def user_colab(request):
     if request.method == 'POST':
         form = ColabForm(request.POST)
@@ -61,9 +65,11 @@ def user_colab(request):
     return render(request, 'usuarios/colaborador.html', {'form': form})
 
 
+@login_required
 def user_image(request):
     if request.method == 'POST':
-        form = CambiarImagenForm(request.POST, request.FILES, instance=request.user)
+        form = CambiarImagenForm(
+            request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
             messages.success(request, 'Imagen cambiada correctamente')
