@@ -7,6 +7,14 @@
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
+    <p>
+      <label for="id_autor">Autor:</label>
+      <input type="text" name="autor" value="{{ comentario.autor }}" maxlength="100" required="" id="id_autor">
+    </p>
+    <p>
+      <label for="id_contenido">Contenido:</label>
+      <textarea name="contenido" cols="40" rows="10" required="" id="id_contenido">jjkj</textarea>
+    </p>
     <button type="submit">Guardar Cambios</button>
   </form>
 {% endblock contenido %}

@@ -22,10 +22,10 @@
 
           
           {% if user == comentario.autor or user.is_staff or user.is_colaborador %}
-            <form method="post">
+            <form method="post" action="{% url 'borrar_comentario' pk=articulo.id comentario_id=comentario.id %}">
               {% csrf_token %}
-              <a href="{% url 'detalle_articulo' pk=articulo.id %}?comentario_id={{ comentario.id }}&editar">Editar comentario</a>
-              <a href="{% url 'detalle_articulo' pk=articulo.id %}?comentario_id={{ comentario.id }}&borrar">Borrar comentario</a>
+              <a class="btn btn-info" href="{% url 'editar_comentario' pk=articulo.id comentario_id=comentario.id %}">Editar comentario def</a>
+              <button type="submit">Borrar Comentario def</button>
             </form>
           {% endif %}
         </div>

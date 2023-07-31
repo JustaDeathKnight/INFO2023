@@ -32,7 +32,7 @@ def AddArticulo(request):
                 articulo = form.save(commit=False)
                 articulo.autor = request.user  # Asignar el autor del artículo al usuario autenticado
                 articulo.save()
-                return redirect('home')
+                return redirect('articulos')
         except Exception as e:
             # Captura cualquier excepción y muestra un mensaje de error
             error_message = f"Ha ocurrido un problema al crear el artículo: {str(e)}"
@@ -68,46 +68,26 @@ def borrar_articulo(request, pk):
     articulo = get_object_or_404(Articulo, pk=pk)
     if request.method == 'POST':
         articulo.delete()
-        return redirect('home')
+        return redirect('articulos')
     return render(request, 'articulos/borrar_articulo.html', {'articulo': articulo})
 
 
 def detalle_articulo(request, pk):
-    articulo = get_object_or_404(Articulo, pk=pk)
 
-    # Verificar si el formulario de comentario se envió
+    articulo = get_object_or_404(Articulo, id=pk)
+
     if request.method == 'POST':
         form = ComentarioForm(request.POST)
         if form.is_valid():
-            comentario = form.save(commit=False)
-            comentario.autor = request.user
-            comentario.save()
+            contenido = form.cleaned_data['contenido']
+            autor = request.user  # El usuario logueado será el autor del comentario
+            comentario = Comentario.objects.create(
+                autor=autor, contenido=contenido)
+            # Usamos el método add() para agregar el comentario al artículo
             articulo.comentarios.add(comentario)
-            return redirect('detalle_articulo', pk=pk)
-
+            return redirect('detalle_articulo', pk=articulo.id)
     else:
         form = ComentarioForm()
-
-    # Verificar si se envió el comentario_id para editar o borrar
-    comentario_id = request.GET.get('comentario_id')
-    if comentario_id:
-        comentario = get_object_or_404(Comentario, id=comentario_id)
-
-        # Verificar si el usuario es el autor del comentario, un colaborador creador del artículo o un administrador
-        if request.user == comentario.autor or request.user.is_staff or request.user.is_colaborador:
-            if 'editar' in request.GET:
-                # Renderizar la plantilla para editar comentario
-                form = ComentarioForm(instance=comentario)
-                return render(request, 'articulos/editar_comentario.html', {'form': form})
-
-            elif 'borrar' in request.GET:
-                # Verificar si se envió el formulario para borrar el comentario
-                if request.method == 'POST':
-                    comentario.delete()
-                    return redirect('detalle_articulo', pk=pk)
-
-                # Renderizar la plantilla para borrar comentario
-                return render(request, 'articulos/borrar_comentario.html', {'comentario': comentario})
 
     return render(request, 'articulos/detalle_articulo.html', {'articulo': articulo, 'form': form})
 
@@ -130,6 +110,30 @@ def agregar_comentario(request, articulo_id):
         form = ComentarioForm()
 
     return render(request, 'agregar_comentario.html', {'form': form})
+
+
+@login_required
+def borrar_comentario(request, pk, comentario_id):
+    articulo = get_object_or_404(Articulo, id=pk)
+    comentario = get_object_or_404(Comentario, id=comentario_id)
+    if comentario.autor or comentario.is_staff or request.user.is_colaborador:
+        comentario.delete()
+    return redirect('detalle_articulo', pk=articulo.id)
+
+
+@login_required
+def editar_comentario(request, pk, comentario_id):
+    articulo = get_object_or_404(Articulo, id=pk)
+    comentario = get_object_or_404(Comentario, id=comentario_id)
+    if comentario.autor or comentario.is_staff or request.user.is_colaborador:
+        if request.method == 'POST':
+            form = ComentarioForm(request.POST, instance=comentario)
+            if form.is_valid():
+                form.save()
+                return redirect('detalle_articulo', pk=articulo.id)
+        else:
+            form = ComentarioForm(instance=comentario)
+        return render(request, 'articulos/editar_comentario.html', {'form': form, 'comentario': comentario})
 
 
 @login_required
