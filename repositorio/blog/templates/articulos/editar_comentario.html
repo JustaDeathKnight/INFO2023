@@ -8,7 +8,7 @@
     {% csrf_token %}
     <div>
       <label for="id_contenido">Contenido:</label>
-      <textarea name="contenido" cols="40" rows="10" required="" id="id_contenido">jjkj</textarea>
+      <textarea name="contenido" cols="40" rows="10" required="" id="id_contenido">{{ comentario.contenido }}</textarea>
     </div>
     <button type="submit">Guardar Cambios</button>
   </form>
