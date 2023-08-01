@@ -1,0 +1,20 @@
+<!-- paginas/templates/confirmar_borrado.html -->
+
+{% extends 'base.html' %}
+
+{% block contenido %}
+    <div class="container fondo-semi-transparente">
+        <h2>Confirmar borrado de mensaje</h2>
+    <p>¿Estás seguro de que deseas borrar el siguiente mensaje?</p>
+    <ul>
+        <li><strong>De:</strong> {{ mensaje.nombre }}</li>
+        <li><strong>Correo:</strong> {{ mensaje.correo }}</li>
+        <li><strong>Mensaje:</strong> {{ mensaje.mensaje }}</li>
+    </ul>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Borrar mensaje</button>
+        <a href="{% url 'ver_mensajes' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+    </div>
+{% endblock contenido %}

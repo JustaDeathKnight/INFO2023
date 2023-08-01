@@ -1,0 +1,19 @@
+
+{% extends 'base.html' %}
+
+{% block contenido %}
+    <div class="container fondo-semi-transparente">
+        <h2>Mensajes de contacto</h2>
+    <ul>
+        {% for mensaje in mensajes %}
+            <li>
+                <strong>De:</strong> {{ mensaje.nombre }}<br>
+                <strong>Correo:</strong> {{ mensaje.correo }}<br>
+                <strong>Mensaje:</strong> {{ mensaje.mensaje }}<br>
+                <a href="{% url 'borrar_mensaje' mensaje.pk %}">Eliminar mensaje</a><br>
+                <hr>
+            </li>
+        {% endfor %}
+    </ul>
+    </div>
+{% endblock contenido %}
