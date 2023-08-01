@@ -70,26 +70,27 @@
           {% if user.is_colaborador or user.is_superuser %}
         
             <!-- test -->
-            <div class="d-flex justify-content-center ms-2 me-1">
-            <div class="dropdown">
+            <div class="d-flex justify-content-center ms-0 ms-lg-2">
+            <div class="dropdown me-0 me-lg-1">
               <button class="btn btn-outline-light dropdown-toggle rounded-pill" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Añadir
               </button>
               <ul class="dropdown-menu align-center">
                 <li><a class="dropdown-item" href="{% url 'add_articulo' %}">Agregar Artículo</a></li>
                 <li><a class="dropdown-item" href="{% url 'crear_categoria' %}">Agregar Categoría</a></li>
+                
               </ul>
             </div>
             </div>
             <!-- test -->
           
           {% endif %}
-        
-          <div class="d-flex justify-content-end ms-2">
+          
+          <div class="d-flex justify-content-center pt-2 pt-lg-0 ms-2">
             <span
               class="dropdown badge d-inline-flex align-items-center p-1 pe-2 text-light-emphasis bg-light text-bg-light border border-dark-subtle rounded-pill"
             >
-            <!-- Esta parte contiene un dropdown junto con un modal para cambiar la imagen del usuario -->
+            <!-- Esta parte contiene un dropdown para cambiar la imagen del usuario -->
             <div class="d-flex justify-content-center">
               <img
                 class="rounded-circle me-1 dropdown-toggle "
@@ -155,6 +156,13 @@
                         >
                           Crear Categoria
                         </a>
+                        <a
+                        type="button"
+                        class="btn btn-dark m-0"
+                        href="{% url 'ver_mensajes' %}"
+                      >
+                        Ver Mensajes
+                      </a>
                       </div>
                       <div class="modal-footer">
                         <button
@@ -173,7 +181,7 @@
                 {% comment %} COLABORADOR {% endcomment %} 
                 {% if user.is_colaborador %}
                   <span
-                    class="btn btn-info btn-sm rounded-pill mx-2 me-0 disabled"
+                    class="btn btn-info btn-sm bg-info-subtle rounded-pill mx-2 me-0 disabled"
                     href="#-1"
                     >Colaborador</span
                   >

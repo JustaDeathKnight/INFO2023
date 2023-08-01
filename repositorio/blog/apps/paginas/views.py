@@ -1,28 +1,65 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from apps.articulos.models import Articulo, Categoria
-from django.db.models import Q
-from django.utils import timezone
+import random
+from .models import MensajeContacto
+from .forms import FormularioContacto
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+
+
 def home(request):
-    return render(request, 'paginas/home.html')
+    categorias = Categoria.objects.all()
+
+    # Obtener todos los artículos
+    articulos = Articulo.objects.all()
+
+    # Obtener 3 artículos aleatorios
+    if articulos.count() >= 3:
+        articulos_aleatorios = random.sample(list(articulos), 3)
+    else:
+        articulos_aleatorios = articulos
+
+    # Otros procesamientos y lógicas...
+
+    return render(request, 'paginas/home.html', {'categorias': categorias, 'articulos_aleatorios': articulos_aleatorios})
+
 
 def acerca_de(request):
     return render(request, 'paginas/acerca_de.html')
 
+
 def contacto(request):
-    return render(request, 'paginas/contacto.html')
+    if request.method == 'POST':
+        formulario = FormularioContacto(request.POST)
+        if formulario.is_valid():
+            # Procesar el formulario y guardar el mensaje
+            nombre = formulario.cleaned_data['nombre']
+            email = formulario.cleaned_data['email']
+            mensaje = formulario.cleaned_data['mensaje']
+
+            MensajeContacto.objects.create(
+                nombre=nombre, email=email, mensaje=mensaje)
+
+            # Redireccionar a una página de éxito o mostrar un mensaje de agradecimiento
+            return redirect('home')
+    else:
+        formulario = FormularioContacto()
+
+    return render(request, 'paginas/contacto.html', {'formulario': formulario})
+
 
 def categorias(request):
-    
+
     articulos = Articulo.objects.all()
 
     context = {
         'articulos': articulos,
-        'categorias': Categoria.objects.all(),  
+        'categorias': Categoria.objects.all(),
     }
-    
+
     return render(request, 'paginas/categorias.html', context)
+
 
 def articulos_all(request):
     categorias = Categoria.objects.all()
@@ -50,3 +87,18 @@ def articulos_all(request):
         'articulos': articulos,
     }
     return render(request, 'paginas/articulos_all.html', context, )
+
+
+@login_required
+def ver_mensajes(request):
+    mensajes = MensajeContacto.objects.all()
+    return render(request, 'paginas/ver_mensajes.html', {'mensajes': mensajes})
+
+
+@login_required
+def borrar_mensaje(request, mensaje_id):
+    mensaje = get_object_or_404(MensajeContacto, pk=mensaje_id)
+    if request.method == 'POST':
+        mensaje.delete()
+        return redirect('ver_mensajes')
+    return render(request, 'paginas/borrar_mensajes.html', {'mensaje': mensaje})

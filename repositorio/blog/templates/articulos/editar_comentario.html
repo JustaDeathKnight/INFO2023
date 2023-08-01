@@ -3,10 +3,30 @@
 {% block titulo %}Editar Comentario{% endblock titulo %}
 
 {% block contenido %}
-  <h2>Editar Comentario</h2>
   <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Guardar Cambios</button>
+  <div class="row d-flex justify-content-center mt-4 p-2">
+      <div class="col-md-10">
+        <div class="card">
+          <div class="card-body p-4">
+            <div class="d-flex flex-start w-100">
+              <img class="rounded-circle shadow-1-strong me-3"
+                src="{{ comentario.autor.imagen.url }}" alt="avatar" width="65"
+                height="65" />
+              <div class="w-100">
+                <h5>Editar comentario</h5>
+                <div class="form-floating">
+                  <textarea name="contenido" class="form-control" placeholder="Leave a comment here" id="contenido" style="height: 100px">{{ comentario.contenido }}</textarea>
+                  <label for="floatingTextarea2">Comentario</label>
+                </div>
+                <div class="d-flex justify-content-end mt-3">
+                  <button class="btn btn-outline-dark btn-sm" type="submit">Guardar<i class="ms-1 bi bi-save"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </form>
 {% endblock contenido %}

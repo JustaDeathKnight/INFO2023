@@ -18,12 +18,10 @@ class Comentario(models.Model):
     contenido = models.TextField()
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fecha_modificacion = models.DateTimeField(auto_now=True)
-  # Cadena de texto en ForeignKey
-
+    # Cadena de texto en ForeignKey
 
     def __str__(self):
         return f"Comentario por {self.autor.username} en {self.fecha_creacion}"
-
 
 
 class Articulo(models.Model):
