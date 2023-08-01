@@ -17,34 +17,89 @@
       </div>
       
       <!-- Comentarios -->
-      {% for comentario in articulo.comentarios.all %}
-        <div>
-          <p>{{ comentario.autor }} {{ comentario.fecha_creacion }}</p>
-          <p>{{ comentario.contenido }}</p>
-
-          
-          {% if user == comentario.autor or user.is_staff or user.is_colaborador %}
-            <form method="post">
-              {% csrf_token %}
-              <a href="{% url 'detalle_articulo' pk=articulo.id %}?comentario_id={{ comentario.id }}&editar">Editar comentario</a>
-              <a href="{% url 'detalle_articulo' pk=articulo.id %}?comentario_id={{ comentario.id }}&borrar">Borrar comentario</a>
-            </form>
-          {% endif %}
+      <div class="card container py-3 mb-4 fondo-semi-transparente">
+        <div class="ps-3 mb-0">
+          <h3 class="mb-0 titulos-subtitulos">Comentarios</h3>
         </div>
-      {% endfor %}
+        {% for comentario in articulo.comentarios.all %}
+          <div class="container text-dark">
+            <div class="row d-flex justify-content-center">
+              <div class="col-10 m-0">
+                <div class="d-flex flex-start pt-3 p-0">
+                  <img class="rounded-circle shadow-1-strong me-3"
+                    src="{{ comentario.autor.imagen.url }}" alt="avatar" width="65"
+                    height="65"/>
+                  <div class="card w-100">
+                    <div class="card-body p-4">
+                      <div class="">
+                        <h5>{{ comentario.autor }}</h5>
+                        <p class="small">{{ comentario.fecha_creacion.date }} - {{ comentario.fecha_creacion.time }}</p>
+                        <p>
+                          {{ comentario.contenido }}
+                        </p>
+                        <div class="d-flex justify-content-end align-items-end">
+                          {% if user == comentario.autor or user.is_staff or user.is_colaborador %}
+                            <form method="post">
+                              {% csrf_token %}
+                              <a class="btn btn-outline-dark btn-sm" href="{% url 'editar_comentario' pk=articulo.id comentario_id=comentario.id %}">Editar<i class="ms-1 bi bi-pencil-square"></i></a>
+                              <a class="btn btn-outline-danger btn-sm" href="{% url 'borrar_comentario' pk=articulo.id comentario_id=comentario.id %}">Borrar<i class="ms-1 bi bi-trash"></i></a>
+                            </form>
+                          {% endif %}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>    
+        {% endfor %}
 
       <!-- Formulario para agregar comentario -->
-      {% if user.is_authenticated %}
-        <h3>Agregar Comentario</h3>
+        {% if user.is_authenticated %}
         <form method="post">
           {% csrf_token %}
-          {{ form.as_p }}
-          <button type="submit">Comentar</button>
+        <div class="row d-flex justify-content-center mt-4 p-2">
+            <div class="col-md-10">
+              <div class="card">
+                <div class="card-body p-4">
+                  <div class="d-flex flex-start w-100">
+                    <img class="rounded-circle shadow-1-strong me-3"
+                      src="{{ user.imagen.url }}" alt="avatar" width="65"
+                      height="65" />
+                    <div class="w-100">
+                      <h5>Agregar un nuevo comentario</h5>
+                      <div class="form-floating">
+                        <textarea name="contenido" class="form-control" placeholder="Leave a comment here" id="contenido" style="height: 100px"></textarea>
+                        <label for="floatingTextarea2">Comentario</label>
+                      </div>
+                      <div class="d-flex justify-content-end mt-3">
+                        <button class="btn btn-outline-dark btn-sm" type="submit">Publicar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </form>
-      {% else %}
-        <p>Debes iniciar sesión para agregar comentarios.</p>
-      {% endif %}
+        {% else %}
+        <div class="row d-flex justify-content-center mt-4 p-2">
+        <div class="col-md-10">
+          <div class="card">
+            <div class="card-body">
+            <p class="mb-0">Debes iniciar sesión para agregar comentarios.</p>
+            
+            </div>
+          </div>
+        </div>
+      </div>
+        {% endif %}
+      </div>
+
+
     </div>
+    
     <div class="col-md-4">
       <!-- Detalles del artículo -->
       <div class="card">
