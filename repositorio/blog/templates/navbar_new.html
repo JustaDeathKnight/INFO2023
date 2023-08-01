@@ -78,6 +78,7 @@
               <ul class="dropdown-menu align-center">
                 <li><a class="dropdown-item" href="{% url 'add_articulo' %}">Agregar Artículo</a></li>
                 <li><a class="dropdown-item" href="{% url 'crear_categoria' %}">Agregar Categoría</a></li>
+                
               </ul>
             </div>
             </div>
@@ -155,6 +156,13 @@
                         >
                           Crear Categoria
                         </a>
+                        <a
+                        type="button"
+                        class="btn btn-dark m-0"
+                        href="{% url 'ver_mensajes' %}"
+                      >
+                        Ver Mensajes
+                      </a>
                       </div>
                       <div class="modal-footer">
                         <button

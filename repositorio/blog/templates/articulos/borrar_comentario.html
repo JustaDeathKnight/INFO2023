@@ -3,10 +3,12 @@
 {% block titulo %}Borrar Comentario{% endblock titulo %}
 
 {% block contenido %}
-  <h2>Borrar Comentario</h2>
+  <div class="card container py-3 fondo-semi-transparente">
+    <h2>Borrar Comentario</h2>
   <p>¿Estás seguro de que deseas borrar este comentario?</p>
   <form method="post">
     {% csrf_token %}
     <button type="submit">Borrar</button>
   </form>
+  </div>
 {% endblock contenido %}
