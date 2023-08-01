@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from apps.articulos.models import Articulo, Categoria
-from django.db.models import Q
-from django.utils import timezone
 import random
 from .models import MensajeContacto
 from .forms import FormularioContacto
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 def home(request):
     categorias = Categoria.objects.all()
@@ -82,3 +82,17 @@ def articulos_all(request):
     return render(request, 'paginas/articulos_all.html', context, )
 
 
+
+
+@login_required
+def ver_mensajes(request):
+    mensajes = MensajeContacto.objects.all()
+    return render(request, 'paginas/ver_mensajes.html', {'mensajes': mensajes})
+
+@login_required
+def borrar_mensaje(request, mensaje_id):
+    mensaje = get_object_or_404(MensajeContacto, pk=mensaje_id)
+    if request.method == 'POST':
+        mensaje.delete()
+        return redirect('ver_mensajes')
+    return render(request, 'paginas/borrar_mensajes.html', {'mensaje': mensaje})
