@@ -1,4 +1,4 @@
-# Trabajo Practico Final - INFORMATORIO2023
+# Trabajo Final - INFORMATORIO2023
 ## Blog de cocina 🍳
 
 
