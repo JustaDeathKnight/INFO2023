@@ -3,10 +3,12 @@
 {% block titulo %}Editar Comentario{% endblock titulo %}
 
 {% block contenido %}
-  <h2>Editar Comentario</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Guardar Cambios</button>
-  </form>
+  <div class="card container py-3 fondo-semi-transparente">
+    <h2>Editar Comentario</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Guardar Cambios</button>
+    </form>
+  </div>
 {% endblock contenido %}

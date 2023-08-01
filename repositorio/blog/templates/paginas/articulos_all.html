@@ -102,23 +102,7 @@
       {% endfor %}
     </div>
 
-    <!-- Columna con lista -->
-    <div class="col-md-3">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Lista de Categorías</h5>
-          <ul class="list-group">
-            {% for categoria in categorias %}
-            <li class="list-group-item">
-              <a href="{% url 'articulos_por_categoria' categoria.id %}"
-                >{{ categoria.nombre }}</a
-              >
-            </li>
-            {% endfor %}
-          </ul>
-        </div>
-      </div>
-    </div>
+    
   </div>
 </div>
 
