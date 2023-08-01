@@ -39,8 +39,8 @@
                           {% if user == comentario.autor or user.is_staff or user.is_colaborador %}
                             <form method="post" action="{% url 'borrar_comentario' pk=articulo.id comentario_id=comentario.id %}">
                               {% csrf_token %}
-                              <a class="btn btn-outline-dark btn-sm" href="{% url 'editar_comentario' pk=articulo.id comentario_id=comentario.id %}">Editar</a>
-                              <button class="btn btn-outline-danger btn-sm" type="submit">Borrar</button>
+                              <a class="btn btn-outline-dark btn-sm" href="{% url 'editar_comentario' pk=articulo.id comentario_id=comentario.id %}">Editar<i class="ms-1 bi bi-pencil-square"></i></a>
+                              <button class="btn btn-outline-danger btn-sm" type="submit">Borrar<i class="ms-1 bi bi-trash"></i></button>
                             </form>
                           {% endif %}
                         </div>
