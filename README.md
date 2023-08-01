@@ -1,6 +1,6 @@
 # Trabajo Practico Final - INFORMATORIO2023
-
-## Integrantes
+## Blog de cocina 
+### Integrantes
 - Acevedo, Ariel.
 - Foulkes, Pablo.
 - Gallardo, Benjamin.
