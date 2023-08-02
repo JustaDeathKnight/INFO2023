@@ -68,8 +68,8 @@
     </div>
     <!-- Boton para ir a todas las categorias -->
     <div class="col-6 d-flex justify-content-end">
-      <a href="{% url 'categorias' %}" class="btn btn-primary me-0">
-        Ver Todas las Categorías
+      <a href="{% url 'categorias' %}" class="btn btn-light me-0">
+        Ver todas las Categorías
       </a>
     </div>
   </div>
@@ -80,7 +80,7 @@
     <!-- Bloque de artículos -->
     <div class="col-md-9 align-items-beteewen">
       {% for articulo in articulos %}
-      <div class="card col-md-12 mb-3 fondo-semi-transparente" width="50">
+      <div class="card col-md-12 mb-3 fondo-semi-transparente">
         <div class="row">
           <div class="col-7 col-sm-5 col-md-5 col-lg-4 col-xl-3">
             <img
@@ -97,7 +97,7 @@
               <p class="card-text">{{ articulo.resumen }}</p>
               <a
                 href="{% url 'detalle_articulo' articulo.id %}"
-                class="btn btn-primary"
+                class="btn btn-light border border-dark"
                 >Leer más</a
               >
             </div>
@@ -114,7 +114,7 @@
           <h5 class="card-title">Lista de Categorías</h5>
           <ul class="list-group">
             {% for categoria in categorias %}
-              <a class="list-group-item list-group-item-action" href="{% url 'articulos_por_categoria' categoria.id %}"
+              <a class="list-group-item list-group-item-action list-group-item-light" href="{% url 'articulos_por_categoria' categoria.id %}"
                 >{{ categoria.nombre }}</a
               >
             {% endfor %}

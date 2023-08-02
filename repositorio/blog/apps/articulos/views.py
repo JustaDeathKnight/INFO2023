@@ -117,8 +117,10 @@ def borrar_comentario(request, pk, comentario_id):
     articulo = get_object_or_404(Articulo, id=pk)
     comentario = get_object_or_404(Comentario, id=comentario_id)
     if comentario.autor or comentario.is_staff or request.user.is_colaborador:
-        comentario.delete()
-    return redirect('detalle_articulo', pk=articulo.id)
+        if request.method == 'POST':
+            comentario.delete()
+            return redirect('detalle_articulo', pk=articulo.id)
+    return render(request, 'articulos/borrar_comentario.html', {'comentario': comentario, 'articulo': articulo})
 
 
 @login_required

@@ -4,36 +4,42 @@
 {% block contenido %}
 <div class="container">
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-8 p-0 pe-0 pe-md-2">
       <!-- Contenido del artículo -->
-      <div class="card text-center mb-4 fondo-semi-transparente">
-        <h2 class="titulos-subtitulos">{{ articulo.titulo }}</h2>
+      <div class="card mb-2 fondo-semi-transparente">
+        <div class="modal-header p-2  px-2 border-bottom-0">
+          <h2 class="titulos-subtitulos fw-bold mb-0 fs-2">{{ articulo.titulo }}</h2>
+          <a class="btn-close p-2" type="button"aria-label="Close"  href="{% url 'articulos' %}"></a>
+        </div>
         
         <div class="container mg-4">
           <div class="centro-imagen">
-            <img src="{{ articulo.imagen.url }}" alt="{{ articulo.titulo }}" class="my-3 img-fluid rounded-3">
+            <img src="{{ articulo.imagen.url }}" alt="{{ articulo.titulo }}" class="my-3 img-fluid rounded-3"  width="400">
           </div>
           <div class=" bg-white my-4 rounded p-3">{{articulo.contenido}}</div>
         </div>
       </div>
       
       <!-- Comentarios -->
-      <div class="card container py-3 mb-4 fondo-semi-transparente">
+      <div class="card container py-3 mb-2 fondo-semi-transparente">
         <div class="ps-3 mb-0">
           <h3 class="mb-0 titulos-subtitulos">Comentarios</h3>
         </div>
         {% for comentario in articulo.comentarios.all %}
           <div class="container text-dark">
             <div class="row d-flex justify-content-center">
-              <div class="col-10 m-0">
+              <div class="col-12 col-sm-10 m-0">
                 <div class="d-flex flex-start pt-3 p-0">
-                  <img class="rounded-circle shadow-1-strong me-3"
+                  <img class="rounded-circle shadow-1-strong me-3 d-none d-sm-inline-block"
                     src="{{ comentario.autor.imagen.url }}" alt="avatar" width="65"
                     height="65"/>
                   <div class="card w-100">
                     <div class="card-body p-4">
                       <div class="">
-                        <h5>{{ comentario.autor }}</h5>
+                        <img class="rounded-circle shadow-1-strong me-2 mb-1 d-inline-block d-sm-none"
+                        src="{{ comentario.autor.imagen.url }}" alt="avatar" width="35"
+                        height="35"/>
+                        <h5 class="d-inline-block">{{ comentario.autor }}</h5>
                         <p class="small">{{ comentario.fecha_creacion.date }} - {{ comentario.fecha_creacion.time }}</p>
                         <p>
                           {{ comentario.contenido }}
@@ -65,11 +71,16 @@
               <div class="card">
                 <div class="card-body p-4">
                   <div class="d-flex flex-start w-100">
-                    <img class="rounded-circle shadow-1-strong me-3"
+                    <img class="rounded-circle shadow-1-strong me-3 d-none d-sm-inline-block"
                       src="{{ user.imagen.url }}" alt="avatar" width="65"
                       height="65" />
                     <div class="w-100">
-                      <h5>Agregar un nuevo comentario</h5>
+                      <img class="rounded-circle shadow-1-strong me-2 mb-2 d-inline-block d-sm-none"
+                        src="{{ user.imagen.url }}" alt="avatar" width="35"
+                        height="35"/>
+
+                      <h5 class="d-inline d-sm-none">Agregar comentario</h5>
+                      <h5 class="d-none d-sm-inline-block">Agregar nuevo comentario</h5>
                       <div class="form-floating">
                         <textarea name="contenido" class="form-control" placeholder="Leave a comment here" id="contenido" style="height: 100px"></textarea>
                         <label for="floatingTextarea2">Comentario</label>
@@ -101,7 +112,7 @@
 
     </div>
     
-    <div class="col-md-4">
+    <div class="col-md-4 p-0 ps-0 ps-md-2">
       <!-- Detalles del artículo -->
       <div class="card">
         <div class="card-body">
