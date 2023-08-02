@@ -3,12 +3,13 @@
 {% block titulo %}Borrar Comentario{% endblock titulo %}
 
 {% block contenido %}
-  <div class="card container py-3 fondo-semi-transparente">
-    <h2>Borrar Comentario</h2>
+<div class="card container py-3 fondo-semi-transparente">
+  <h2>Borrar Comentario</h2>
   <p>¿Estás seguro de que deseas borrar este comentario?</p>
   <form method="post">
     {% csrf_token %}
-    <button type="submit">Borrar</button>
+    <button class="btn btn-primary " type="submit">Borrar</button>
+    <a class="btn btn-danger mx-2" href="{% url 'detalle_articulo' articulo.pk %}">Cancelar</a>
   </form>
-  </div>
+</div>
 {% endblock contenido %}
