@@ -45,21 +45,11 @@ body {
 }
 
 /* Estilos para las categorías */
-.card-categorias {
-  border-radius: 20px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  background-color: #f9f9f9;
-  padding: 20px;
-  margin: 10px; 
+.card-categoria {
+  height: 180px; /* Ajusta la altura según tus necesidades */
+  border-radius: 15px;
 }
 
-/* Estilos para la imagen de la categoría */
-.card-categorias .card-img-top {
-  max-width: 100px;
-  max-height: 100px;
-  margin: 0 auto;
-  display: block;
-}
 
 /* Estilos para el botón "Ver artículos" */
 .card-categorias .btn-primary {

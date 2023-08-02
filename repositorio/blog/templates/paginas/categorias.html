@@ -4,29 +4,28 @@
 
 {% block contenido %}
 <!-- Categorías -->
-<div class="row my-4 text-center fondo-semi-transparente">
-
-  {% for categoria in categorias %}
-
-  <div class="col-md-4 mb-3">
-
-    <div class="card-categorias ">
-
-      <div class="card-body md">
-
-        <h2 class="titulos-subtitulos">{{categoria.nombre}}</h2>
-        <div class="image-wraper">
-          <img src="{{categoria.icono.url}}" alt="{{categoria.nombre}}" class="card-img-top rounded-square-image my-2">
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col">
+      <h1></h1>
+      <hr>
+      <div class="row d-flex">
+        {% for categoria in categorias %}
+        <div class="col-md-4 mb-3 d-flex justify-content-center ">
+          <div class="card-categoria">
+            <a href="{% url 'articulos_por_categoria' categoria.id %}" class=" btn btn-dark ">
+              <div class="card-body">
+                <div class="category-image">
+                  <img src="{{categoria.icono.url}}" alt="{{categoria.nombre}}" class="w-100">
+                </div>
+                <h4 class="text-center">{{categoria.nombre}}</h4>
+              </div>
+            </a>
+          </div>
         </div>
-        <a href="{% url 'articulos_por_categoria' categoria.id %}" class=" btn btn-primary "> Ver articulos</a>
-
+        {% endfor %}
       </div>
-
     </div>
-
   </div>
-
-  {% endfor %}
-
 </div>
 {% endblock contenido %}
