@@ -3,16 +3,25 @@
 {% block titulo %}Articulos{% endblock titulo %}
 
 {% block contenido %}
-<div class="container">
-  <div class="row">
+<h2 class=" titulos-subtitulos fondo-semi-transparente text-center">Articulos de {{categoria.nombre}}</h2>
+<!-- Bloque de artículos -->
+<div class="col-md-10 offset-md-1">
+  <div class="row text-center">
     {% for articulo in articulos %}
-    <div class="col-md-4 mb-4">
-      <div class="card" style="width: 18rem;">
-        <img src="{{ articulo.imagen.url }}" class="card-img-top card-img" alt="{{ articulo.titulo }}">
-        <div class="card-body">
-          <h5 class="card-title">{{ articulo.titulo }}</h5>
-          <p class="card-text">{{ articulo.resumen }}</p>
-          <a href="{% url 'detalle_articulo' articulo.id %}" class="btn btn-primary">Leer más</a>
+    <div class="card col-md-9 mb-3 fondo-semi-transparente" width="50">
+      <div class="row">
+        <div class="col-7 col-sm-5 col-md-5 col-lg-4 col-xl-3">
+          <img src="{{ articulo.imagen.url }}" class="rounded-square-image" alt="{{ articulo.titulo }}" height="200"
+            width="200" />
+        </div>
+        <div class="col- col-sm-7 col-lg-8 col-xl-9">
+          <div class="card-body">
+            <h5 class="card-title">{{ articulo.titulo }}</h5>
+            <p class="card-text">{{ articulo.resumen }}</p>
+            <!-- Contenido adicional -->
+            <p class="card-text">{{ articulo.contenido | linebreaksbr | slice:"400" }}{{ "..." }}</p>
+            <a href="{% url 'detalle_articulo' articulo.id %}" class="btn btn-primary">Leer más</a>
+          </div>
         </div>
       </div>
     </div>

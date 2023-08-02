@@ -1,31 +1,23 @@
 {% extends 'base.html' %}
-
-{% block titulo %}Categorias{% endblock titulo %}
-
 {% block contenido %}
-<!-- Categorías -->
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col">
-      <h1></h1>
-      <hr>
-      <div class="row d-flex">
-        {% for categoria in categorias %}
-        <div class="col-md-4 mb-3 d-flex justify-content-center ">
-          <div class="card-categoria">
-            <a href="{% url 'articulos_por_categoria' categoria.id %}" class=" btn btn-dark ">
-              <div class="card-body">
-                <div class="category-image">
-                  <img src="{{categoria.icono.url}}" alt="{{categoria.nombre}}" class="w-100">
-                </div>
-                <h4 class="text-center">{{categoria.nombre}}</h4>
-              </div>
-            </a>
-          </div>
+<h2 class=" titulos-subtitulos fondo-semi-transparente text-center">Todas las Categorías</h2>
+<div class="row mt-3 g-4 fondo-semi-transparente">
+  {% for categoria in categorias %}
+  <div class="col-md-3">
+    <div class="card-categorias p-1 h-100 bg-dark" >
+      <div class="d-flex justify-content-between align-items-center p-1">
+        <div class="flex-column 1h-1 imagename">
+          <a href="{% url 'articulos_por_categoria' categoria.id %}" class="btn btn-outline-light w-100">
+            {{categoria.nombre}}
+          </a>
         </div>
-        {% endfor %}
+        <div>
+          <img src="{{categoria.icono.url}}" alt="{{categoria.nombre}}">
+        </div>
       </div>
     </div>
   </div>
+  {% endfor %}
 </div>
 {% endblock contenido %}
+

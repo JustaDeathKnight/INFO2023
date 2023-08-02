@@ -5,18 +5,18 @@ body {
 }
 
 .titulos-subtitulos {
-  color: #ff8514f1;
-  -webkit-text-stroke: 1px #361c03e5
+  color: #ff7b00e0;
+  -webkit-text-stroke: 1px #000000e5
 }
 
 .parrafos {
   color: #000000;
-  -webkit-text-stroke: 0.5px #666462e5
+  -webkit-text-stroke: 0.5px #0f0d0ce5
 }
 
 .listas {
   color: #000000;
-  -webkit-text-stroke: 0.5px #666462e5
+  -webkit-text-stroke: 0.5px #0a0909e5
 }
 
 /* Estilo para un área con fondo semitransparente */
@@ -25,7 +25,7 @@ body {
     172,
     164,
     164,
-    0.6
+    0.9
   ); /* Fondo blanco con opacidad del 70% */
   padding: 10px; /* Ajusta el padding según tus necesidades */
   border: 2px solid #333131;
@@ -44,45 +44,13 @@ body {
   background-color: transparent;
 }
 
-/* Estilos para las categorías */
-.card-categoria {
-  height: 180px; /* Ajusta la altura según tus necesidades */
-  border-radius: 15px;
-}
-
-
-/* Estilos para el botón "Ver artículos" */
-.card-categorias .btn-primary {
-  margin-top: 10px;
-}
-
-
-/* Estilo para el contenedor del texto dentro de las tarjetas */
-.texto-tarjeta {
-  max-height: 100%; /* Puedes ajustar este valor según tus necesidades */
-  overflow: hidden; /* Ocultar el contenido que supere la altura máxima */
-}
-
-/* Estilo para la clase aspect-ratio */
-.aspect-ratio {
-  position: relative;
-  width: 100%;
-}
-.aspect-ratio-1x1 {
-  padding-bottom: 100%; /* Relación de aspecto 1:1 (cuadrado) */
-}
-.aspect-ratio-item {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Para recortar la imagen y mantener el aspecto */
-}
-
-
 /* Estilos para redondear los bordes del fondo blanco */
 .bg-white {
+  border-radius: 10px; /* Puedes ajustar el valor para redondear más o menos */
+}
+
+/* Estilos para redondear los bordes del fondo blanco */
+.bg-dark {
   border-radius: 10px; /* Puedes ajustar el valor para redondear más o menos */
 }
 
@@ -96,4 +64,34 @@ body {
   height: 200px; /* Establece una altura específica */
   object-fit: cover; /* Ajusta la imagen manteniendo la relación de aspecto y recortando si es necesario */
   border-radius: 10px; /* Redondea los bordes de la imagen */
+}
+
+/* Estilos para las categorías */
+.card-categorias {
+  height: 100%;
+}
+
+/* Establece un tamaño fijo para las imágenes */
+.card-categorias img {
+  height: 150px;
+  width: 150px;
+  object-fit: cover; /* Ajusta la imagen al tamaño establecido */
+}
+
+/* Ajusta el espaciado entre la tarjeta y el botón */
+.card-categorias .flex-column {
+  margin-bottom: 10px; /* Puedes ajustar este valor según tus necesidades */
+}
+
+/* Asegura que el botón ocupe todo el ancho en pantallas pequeñas */
+@media (max-width: 767px) {
+  .card .btn {
+    width: 100%;
+  }
+}
+
+
+/* Aumenta el tamaño de la fuente */
+.aumentar-fuente {
+  font-size: 20px; /* Puedes ajustar este valor según tus necesidades */
 }
