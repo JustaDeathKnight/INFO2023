@@ -12,7 +12,7 @@ DATABASES = {
     'default': {
         # Motor de la base de datos
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'blog_cocina',
+        'NAME': 'blog_c',
         # Credenciales de acceso
         'USER': 'root',
         'PASSWORD': 'root',
