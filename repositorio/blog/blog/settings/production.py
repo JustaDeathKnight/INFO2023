@@ -21,6 +21,6 @@ DATABASES = {
         'PASSWORD': 'informatorio2023',
         # Host y puerto
         'HOST': 'JaDK.mysql.pythonanywhere-services.com',
-        'PORT': '',
+        'PORT': '3306',
     }
 }
