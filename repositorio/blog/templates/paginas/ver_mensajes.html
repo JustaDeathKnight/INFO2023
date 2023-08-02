@@ -8,7 +8,7 @@
         {% for mensaje in mensajes %}
             <li>
                 <strong>De:</strong> {{ mensaje.nombre }}<br>
-                <strong>Correo:</strong> {{ mensaje.correo }}<br>
+                <strong>Correo:</strong> {{ mensaje.email }}<br>
                 <strong>Mensaje:</strong> {{ mensaje.mensaje }}<br>
                 <a href="{% url 'borrar_mensaje' mensaje.pk %}">Eliminar mensaje</a><br>
                 <hr>
