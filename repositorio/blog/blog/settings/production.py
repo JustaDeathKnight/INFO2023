@@ -15,7 +15,7 @@ DATABASES = {
     'default': {
         # Motor de la base de datos
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'JaDK$blog_cocina',
+        'NAME': 'JaDK$default',
         # Credenciales de acceso
         'USER': 'JaDK',
         'PASSWORD': 'informatorio2023',
