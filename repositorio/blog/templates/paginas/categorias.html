@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Categorias{% endblock titulo %}
+
+{% block contenido %}
+<!-- Categorías -->
+<div class="row my-4 text-center fondo-semi-transparente">
+
+  {% for categoria in categorias %}
+
+  <div class="col-md-4 mb-3">
+
+    <div class="card-categorias ">
+
+      <div class="card-body md">
+
+        <h2 class="titulos-subtitulos">{{categoria.nombre}}</h2>
+        <div class="image-wraper">
+          <img src="{{categoria.icono.url}}" alt="{{categoria.nombre}}" class="card-img-top rounded-square-image my-2">
+        </div>
+        <a href="{% url 'articulos_por_categoria' categoria.id %}" class="btn btn-dark"> Ver articulos</a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  {% endfor %}
+
+</div>
+{% endblock contenido %}

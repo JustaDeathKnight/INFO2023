@@ -7,7 +7,7 @@ import sys
 def main():
     """Run administrative tasks."""
     # .local nos corerr de manera local en el equipo de desarrollo y .production nos correrá en el servidor de producción
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'blog.settings.local')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'blog.settings.production')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

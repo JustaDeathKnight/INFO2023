@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Articulos{% endblock titulo %}
+
+{% block contenido %}
+<div class="container">
+  <div class="row">
+    {% for articulo in articulos %}
+    <div class="col-md-4 mb-4">
+      <div class="card" style="width: 18rem;">
+        <img src="{{ articulo.imagen.url }}" class="card-img-top card-img" alt="{{ articulo.titulo }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ articulo.titulo }}</h5>
+          <p class="card-text">{{ articulo.resumen }}</p>
+          <a href="{% url 'detalle_articulo' articulo.id %}" class="btn btn-outline-dark d-flex justify-content-center">Leer más</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock contenido %}

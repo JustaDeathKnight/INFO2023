@@ -1,0 +1,228 @@
+{% load static %}
+
+
+<!-- Responsive navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mx-0">
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}">
+      <span
+        class="badge p-0 pe-0 bg-light text-bg-light border border-dark-subtle rounded-pill"
+      >
+        <img
+          class="rounded-circle me-0"
+          width="30"
+          height="30"
+          src="{% static 'img/donut_food_icon.svg' %}"
+          alt=""
+        />
+      </span>
+      <div class="mx-2">Blog de comida</div>
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      {% comment %} VISITANTE/PUBLICO {% endcomment %}
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
+        <li class="nav-item">
+          <a
+            class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}"
+            href="{% url 'home' %}"
+            >Inicio</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link {% if request.resolver_match.url_name == 'acerca_de' %}active{% endif %}"
+            href="{% url 'acerca_de' %}"
+            >Acerca de</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link {% if request.resolver_match.url_name == 'contacto' %}active{% endif %}"
+            href="{% url 'contacto' %}"
+            >Contacto</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link {% if request.resolver_match.url_name == 'articulos' %}active{% endif %}"
+            aria-current="page"
+            href="{% url 'articulos' %}"
+            >Articulos</a
+          >
+        </li>
+      </ul>
+        <!-- Opciones de la navbar para usuarios logueados -->
+        {% if user.is_authenticated %}
+          <!-- Opciones usuarios admin o colaborador -->
+          {% if user.is_colaborador or user.is_superuser %}
+        
+            <!-- test -->
+            <div class="d-flex justify-content-center ms-0 ms-lg-2">
+            <div class="dropdown me-0 me-lg-1">
+              <button class="btn btn-outline-light dropdown-toggle rounded-pill" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Añadir
+              </button>
+              <ul class="dropdown-menu align-center">
+                <li><a class="dropdown-item" href="{% url 'add_articulo' %}">Agregar Artículo</a></li>
+                <li><a class="dropdown-item" href="{% url 'crear_categoria' %}">Agregar Categoría</a></li>
+                
+              </ul>
+            </div>
+            </div>
+            <!-- test -->
+          
+          {% endif %}
+          
+          <div class="d-flex justify-content-center pt-2 pt-lg-0 ms-2">
+            <span
+              class="dropdown badge d-inline-flex align-items-center p-1 pe-2 text-light-emphasis bg-light text-bg-light border border-dark-subtle rounded-pill"
+            >
+            <!-- Esta parte contiene un dropdown para cambiar la imagen del usuario -->
+            <div class="d-flex justify-content-center">
+              <img
+                class="rounded-circle me-1 dropdown-toggle "
+                type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                width="30"
+                height="30"
+                src="{{ user.imagen.url }}"
+                alt=""
+              />
+              <ul class="dropdown-menu align-center">
+                <li>
+                  <!-- Button trigger modal -->
+                  <a class="dropdown-item" href="{% url 'imagen' %}">Cambiar avatar</a>
+                </li>
+              </ul>
+            </div>
+              {{ user.username }}
+
+              {% comment %} SUPER {% endcomment %} 
+              {% if user.is_superuser %}
+                <!-- Button trigger modal -->
+                <button
+                  class="btn btn-warning btn-sm rounded-pill mx-2 me-0"
+                  data-bs-toggle="modal"
+                  data-bs-target="#opcionesAdmin"
+                >
+                  Admin
+                </button>
+      
+                <!-- Modal -->
+                <div
+                  class="modal fade"
+                  id="opcionesAdmin"
+                  tabindex="-1"
+                  aria-labelledby="ModalAdminLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="ModalAdminLabel">
+                          Menu Administrador
+                        </h1>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body mx-5 mx-sm-0  d-flex flex-wrap align-items-center justify-content-center ">
+                        <a
+                          type="button"
+                          class="btn btn-dark d-block"
+                          href="{% url 'colaborador' %}"
+                        >
+                          Nuevo Colaborador
+                        </a>
+                        <a
+                          type="button"
+                          class="btn btn-dark mx-5 mx-sm-2 my-2 my-sm-0 d-block"
+                          href="{% url 'crear_categoria' %}"
+                        >
+                          Crear Categoria
+                        </a>
+                        <a
+                        type="button"
+                        class="btn btn-dark mx-5 mx-sm-0 d-block"
+                        href="{% url 'ver_mensajes' %}"
+                      >
+                        Ver Mensajes
+                      </a>
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          type="button"
+                          class="btn btn-secondary"
+                          data-bs-dismiss="modal"
+                        >
+                          Close
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+    
+              {% else %} 
+                {% comment %} COLABORADOR {% endcomment %} 
+                {% if user.is_colaborador %}
+                  <span
+                    class="btn btn-info btn-sm bg-info-subtle rounded-pill mx-2 me-0 disabled"
+                    href="#-1"
+                    >Colaborador</span
+                  >
+                {% else %} 
+                  {% comment %} MIEMBRO {% endcomment %}
+                  <span
+                    class="btn btn-success btn-sm rounded-pill mx-2 me-0 disabled"
+                    href="#-1"
+                    >Miembro</span
+                  >
+                {% endif %}
+              {% endif %} 
+              {% comment %} LOGOUT {% endcomment %}
+              <span class="vr mx-2 bg-dark"></span>
+              <a
+                type="button"
+                class="btn btn-outline-danger rounded-pill btn-sm mx-0 me-0"
+                aria-label="Small button"
+                href="{% url 'logout' %}"
+              >
+                Logout
+              </a>
+            </span>
+          </div>
+
+        {% else %}
+          <!-- Opciones de la navbar para usuarios no logueados -->
+          <div class="text-end text-center">
+            <a
+              type="button"
+              class="btn btn-outline-light mx-2 me-2"
+              href="{% url 'login' %}"
+            >
+              Login
+            </a>
+            <a type="button" class="btn btn-warning" href="{% url 'registro' %}">
+              Registro
+            </a>
+          </div>
+        {% endif %}
+      
+    </div>
+  </div>
+</nav>

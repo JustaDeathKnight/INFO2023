@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}Home{% endblock titulo %}
+
+{% block contenido %}
+<div class="container container-home">
+  <div class="row">
+    <div class="col fondo-semi-transparente">
+      <h2 class="titulos-subtitulos text-center">Bienvenido/a al Blog del Grupo 8</h2>
+    </div>
+  </div>
+
+  <div class="row justify-content-center align-items-start my-2">
+    <!-- Sección de artículos aleatorios -->
+    <div class="col-md-9 fondo-semi-transparente">
+      <div class=" px-2">
+      <h2 class="titulos-subtitulos">Recomendaciones del Día</h2>
+      <div class="row">
+        {% for articulo in articulos_aleatorios %}
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <img src="{{ articulo.imagen.url }}" class="card-img-top img-articulo" alt="{{ articulo.titulo }}">
+            <div class="card-body">
+              <h5 class="card-title">{{ articulo.titulo }}</h5>
+              <p class="card-text">{{ articulo.resumen }}</p>
+              <a href="{% url 'detalle_articulo' articulo.id %}" class="btn btn-outline-dark d-flex justify-content-center">Leer más</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      </div>
+    </div>
+
+    <!-- Columna con lista de categorías -->
+    <div class="col-md-3 ps-0 ps-md-2 pt-2 pt-md-0 pe-0">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Lista de Categorías</h5>
+          <ul class="list-group">
+            {% for categoria in categorias %}
+              <a class="list-group-item list-group-item-action list-group-item-light" href="{% url 'articulos_por_categoria' categoria.id %}"
+                >{{ categoria.nombre }}</a
+              >
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock contenido %}
