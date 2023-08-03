@@ -120,10 +120,10 @@ MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Configuración de PWA
-PWA_APP_NAME = 'Cocina'
+PWA_APP_NAME = 'Blog de cocina '
 PWA_APP_DESCRIPTION = "Blog de cocina"
-PWA_APP_THEME_COLOR = '#000000'
-PWA_APP_BACKGROUND_COLOR = '#ffffff'
+PWA_APP_THEME_COLOR = '#212529'
+PWA_APP_BACKGROUND_COLOR = '#f68115'
 PWA_APP_DISPLAY = 'standalone'
 PWA_APP_SCOPE = '/'
 PWA_APP_ORIENTATION = 'any'
