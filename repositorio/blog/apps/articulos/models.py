@@ -32,8 +32,9 @@ class Articulo(models.Model):
     fecha_publicacion = models.DateTimeField(auto_now_add=True)
     imagen = models.ImageField(upload_to = 'articulos', default='iconos/default_icon.png')
     categoria_articulo = models.ForeignKey(Categoria, on_delete= models.CASCADE)
-    # , default=Usuario.objects.filter(is_superuser=True).first().pk
-    autor = models.ForeignKey(Usuario, on_delete=models.CASCADE) 
+    # Para una BD nueva se debe crear sin default, sino provoca error al migrar
+    autor = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    # autor = models.ForeignKey(Usuario, on_delete=models.CASCADE, default=Usuario.objects.filter(is_superuser=True).first().pk) 
     comentarios = models.ManyToManyField(Comentario, related_name='articulo')
 
     def __str__(self):
