@@ -86,7 +86,7 @@
           
           {% endif %}
           
-          <div class="d-flex justify-content-end pt-2 pt-lg-0 ms-2">
+          <div class="d-flex justify-content-center pt-2 pt-lg-0 ms-2">
             <span
               class="dropdown badge d-inline-flex align-items-center p-1 pe-2 text-light-emphasis bg-light text-bg-light border border-dark-subtle rounded-pill"
             >
@@ -141,24 +141,24 @@
                           aria-label="Close"
                         ></button>
                       </div>
-                      <div class="modal-body">
+                      <div class="modal-body d-flex flex-wrap">
                         <a
                           type="button"
-                          class="btn btn-dark m-0"
+                          class="btn btn-dark m-2"
                           href="{% url 'colaborador' %}"
                         >
                           Nuevo Colaborador
                         </a>
                         <a
                           type="button"
-                          class="btn btn-dark ms-2"
+                          class="btn btn-dark m-2"
                           href="{% url 'crear_categoria' %}"
                         >
                           Crear Categoria
                         </a>
                         <a
                         type="button"
-                        class="btn btn-dark m-0"
+                        class="btn btn-dark m-2"
                         href="{% url 'ver_mensajes' %}"
                       >
                         Ver Mensajes
@@ -181,7 +181,7 @@
                 {% comment %} COLABORADOR {% endcomment %} 
                 {% if user.is_colaborador %}
                   <span
-                    class="btn btn-info btn-sm rounded-pill mx-2 me-0 disabled"
+                    class="btn btn-info btn-sm bg-info-subtle rounded-pill mx-2 me-0 disabled"
                     href="#-1"
                     >Colaborador</span
                   >
