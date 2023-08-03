@@ -1,4 +1,4 @@
-var staticCacheName = "blog-cocina-v1";
+var staticCacheName = "djangopwa-v1";
 
 self.addEventListener("install", function (event) {
   event.waitUntil(
