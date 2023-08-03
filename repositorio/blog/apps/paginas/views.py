@@ -12,14 +12,15 @@ def home(request):
     categorias = Categoria.objects.all()
 
     # Obtener todos los artículos
+    
     articulos = Articulo.objects.all()
 
+    # Obtener 3 artículos aleatorios
     # Obtener 3 artículos aleatorios
     if articulos.count() >= 3:
         articulos_aleatorios = random.sample(list(articulos), 3)
     else:
         articulos_aleatorios = articulos
-
     # Otros procesamientos y lógicas...
 
     return render(request, 'paginas/home.html', {'categorias': categorias, 'articulos_aleatorios': articulos_aleatorios})
