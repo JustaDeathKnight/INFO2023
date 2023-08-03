@@ -18,8 +18,7 @@
           <div class="card-body">
             <h5 class="card-title aumentar-fuente">{{ articulo.titulo }}</h5>
             <p class="card-text aumentar-fuente">{{ articulo.resumen }}</p>
-            <!-- Contenido adicional -->
-            <p class="card-text">{{ articulo.contenido | linebreaksbr | slice:"400" }}{{ "..." }}</p>
+            
             <a href="{% url 'detalle_articulo' articulo.id %}" class="btn btn-primary">Leer más</a>
           </div>
         </div>

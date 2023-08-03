@@ -2,6 +2,11 @@ from django.db import models
 from apps.usuarios.models import Usuario
 from django.contrib.auth.models import User
 from django.conf import settings
+from django.utils import timezone
+from ckeditor.fields import RichTextField
+
+# Importar pytz para manejar timezones
+import pytz
 
 
 # Create your models here.
@@ -17,7 +22,7 @@ class Categoria(models.Model):
 class Comentario(models.Model):
     autor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     contenido = models.TextField()
-    fecha_creacion = models.DateTimeField(auto_now_add=True)
+    fecha_creacion = models.DateTimeField(default=timezone.now)
     fecha_modificacion = models.DateTimeField(auto_now=True)
     # Cadena de texto en ForeignKey
 
@@ -28,8 +33,9 @@ class Comentario(models.Model):
 class Articulo(models.Model):
     titulo = models.CharField(max_length=50)
     resumen = models.CharField(max_length=100, null=True)
-    contenido = models.TextField()
-    fecha_publicacion = models.DateTimeField(auto_now_add=True)
+    contenido = RichTextField(blank=True, null=True)
+    # contenido = models.TextField()
+    fecha_publicacion = models.DateTimeField(default=timezone.now)
     imagen = models.ImageField(upload_to = 'articulos', default='iconos/default_icon.png')
     categoria_articulo = models.ForeignKey(Categoria, on_delete= models.CASCADE)
     # Para una BD nueva se debe crear sin default, sino provoca error al migrar

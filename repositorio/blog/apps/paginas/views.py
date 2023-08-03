@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 
 def home(request):
-    categorias = Categoria.objects.all()
+    categorias = Categoria.objects.all().order_by('nombre')
 
     # Obtener todos los artículos
     
@@ -56,14 +56,14 @@ def categorias(request):
 
     context = {
         'articulos': articulos,
-        'categorias': Categoria.objects.all(),
+        'categorias': Categoria.objects.all().order_by('nombre'),
     }
 
     return render(request, 'paginas/categorias.html', context)
 
 
 def articulos_all(request):
-    categorias = Categoria.objects.all()
+    categorias = Categoria.objects.all().order_by('nombre')
     articulos = Articulo.objects.all()
     orden = request.GET.get('orden')
     direccion = request.GET.get('direccion')
