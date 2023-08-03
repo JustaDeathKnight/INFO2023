@@ -78,7 +78,7 @@
 
   <div class="row mt-4">
     <!-- Bloque de artículos -->
-    <div class="col-md-9 align-items-beteewen">
+    <div class="col-md-9 align-items-between">
       {% for articulo in articulos %}
       <div class="card col-md-12 mb-3 fondo-semi-transparente">
         <div class="row">
@@ -93,8 +93,9 @@
           </div>
           <div class="col-5 col-sm-7 col-lg-8 col-xl-9">
             <div class="card-body">
-              <h5 class="card-title">{{ articulo.titulo }}</h5>
-              <p class="card-text">{{ articulo.resumen }}</p>
+              <h4 class="card-title">{{ articulo.titulo }}</h4>
+              <p class="card-text aumentar-fuente">{{ articulo.resumen }}</p>
+              <p class="card-text">{{ articulo.contenido | linebreaksbr | slice:"400" }}{{ "..." }}</p>
               <a
                 href="{% url 'detalle_articulo' articulo.id %}"
                 class="btn btn-light border border-dark"

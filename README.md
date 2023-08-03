@@ -13,7 +13,7 @@ En nuestro Blog de Cocina, encontrarás:
 - Y mucho más.
 
 ### Deploy app ⚙️
-- [Blog de Cocina](https://www.unaUrl/) - Pagina del proyecto.
+- [Blog de Cocina](https://JaDK.pythonanywhere.com/) - Pagina del proyecto.
 
 ## Construido con 🛠️
 - [MySQL 8.0](https://dev.mysql.com/downloads/installer/) - Base de Datos del Proyecto.
