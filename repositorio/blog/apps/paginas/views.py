@@ -7,13 +7,18 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home(request):
+    contexto = {}
     categorias = Categoria.objects.all()
     
     # Obtener todos los artículos
+    
     articulos = Articulo.objects.all()
     
     # Obtener 3 artículos aleatorios
-    articulos_aleatorios = random.sample(list(articulos), 3)
+    if articulos.count() >= 3:
+        articulos_aleatorios = random.sample(list(articulos), 3)
+    else:
+        articulos_aleatorios = articulos
     
     # Otros procesamientos y lógicas...
     
