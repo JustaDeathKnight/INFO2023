@@ -16,8 +16,8 @@
         </div>
         <div class="col- col-sm-7 col-lg-8 col-xl-9">
           <div class="card-body">
-            <h5 class="card-title">{{ articulo.titulo }}</h5>
-            <p class="card-text">{{ articulo.resumen }}</p>
+            <h5 class="card-title aumentar-fuente">{{ articulo.titulo }}</h5>
+            <p class="card-text aumentar-fuente">{{ articulo.resumen }}</p>
             <!-- Contenido adicional -->
             <p class="card-text">{{ articulo.contenido | linebreaksbr | slice:"400" }}{{ "..." }}</p>
             <a href="{% url 'detalle_articulo' articulo.id %}" class="btn btn-primary">Leer más</a>
