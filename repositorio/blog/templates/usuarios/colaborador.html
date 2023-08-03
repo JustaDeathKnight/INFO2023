@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}Registro Colaborador{% endblock titulo %}
+ 
+{% block contenido %}
+
+  <div class="modal modal-sheet position-static d-block bg-body-secondary p-0 m-0" tabindex="-1" role="dialog" id="modalSignin">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content rounded-4 shadow">
+        <div class="modal-header p-5 pb-4 border-bottom-0">
+          <h2 class="fw-bold mb-0 fs-2">Registro colaborador</h2>
+          <a class="btn-close" type="button"aria-label="Close"  href="{% url 'home' %}"></a>
+        </div>
+
+        <div class="modal-body px-5 pt-0">
+          <form method="POST">
+            {% csrf_token %}
+
+            <div class="row">
+              <div class="col form-floating mb-3">
+                <input type="text" name="first_name" class="form-control rounded-3" id="floatingInputFirstName" placeholder=" Nombre" required>
+                <label class="ms-2" for="floatingInput"> Nombre</label>
+              </div>
+              <div class="col form-floating mb-3">
+                <input type="text" name="last_name" class="form-control rounded-3" id="floatingInputLastName" placeholder=" Apellido" required>
+                <label class="ms-2" for="floatingInput"> Apellido</label>
+              </div>
+            </div>
+
+            {% comment %} USER {% endcomment %}
+            <div class="form-floating mb-3">
+              <input type="text" 
+              name="username" class="form-control rounded-3" id="floatingInputUser" placeholder="Usuario" required> 
+              <label for="floatingInput">Nombre de Usuario</label>
+            </div>
+
+            {% comment %} EMAIL {% endcomment %}
+            <div class="form-floating mb-3">
+              <input type="email" name="email" class="form-control rounded-3" id="floatingInputEmail" placeholder="correo@gmail.com" required>
+              <label for="floatingInput">Correo Electronico</label>
+            </div>
+
+            {% comment %} PASSWORD {% endcomment %}
+            <div class="form-floating mb-3">
+              <input type="password" name="password1" class="form-control rounded-3" id="floatingPassword" placeholder="Contraseña" required>
+              <label for="floatingPassword">Contraseña</label>
+            </div>
+            
+            {% comment %} CONFIRM PASSWORD {% endcomment %}
+            <div class="form-floating mb-3">
+              <input type="password" name="password2" class="form-control rounded-3" id="floatingPasswordConfirm" placeholder="Confirmar Contraseña" required>
+              <label for="floatingPassword">Confirmar Contraseña</label>
+            </div>
+
+            {% comment %} COLABORADOR {% endcomment %}
+            <div class="form-check mb-3 m-3">
+              {{ form.is_colaborador }}
+              <label class="form-check-label" for="floatingInputColaborador">
+                Es un colaborador?
+              </label>
+            </div>
+
+            {% comment %} FORM ERROR {% endcomment %}
+            {{form.errors}}
+            
+            {% comment %} MESSAGES {% endcomment %}
+            {% if messages %}
+              {% for message in messages %}
+                {% if message.tags == 'success' %}
+                  <div class="alert alert-success text-center">{{ message }}</div>
+                {% else %}
+                  <div class="alert alert-danger text-center">{{ message }}</div>
+                {% endif %}
+              {% endfor %} 
+            {% endif %}
+
+            {% comment %} BUTTON {% endcomment %}
+            <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Registrar</button>
+        
+          </form>
+        </div>
+        <div class="modal-footer p-2 pt-0 border-top-0 mx-auto">
+          <div class="text-center">
+            <p class="text-body-secondary text-center">
+              &copy; Informatorio 2023
+            </p>
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock contenido %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block titulo %}Nuevo Articulo{% endblock titulo %}
+{% block contenido %}
+<div class="container fondo-semi-transparente">
+  <a class="btn-close float-end " type="button"aria-label="Close"  href="{% url 'home' %}"></a>
+  <h1 class="mb-4 titulos-subtitulos ">Crear Nuevo Artículo</h1>
+  <form method="post" enctype ="multipart/form-data">
+    {% csrf_token %}
+    {% if form.errors %}
+    <div class="alert alert-danger">
+      <strong>Error:</strong> {{ form.errors }}
+    </div>
+    {% endif %}
+    <div class="mb-3">
+      <label for="titulo" class="form-label parrafos">Título del Artículo:</label>
+      <input type="text" class="form-control" id="titulo" name="titulo" required>
+    </div>
+    <div class="mb-3">
+      <label for="resumen" class="form-label parrafos">Resumen del Artículo:</label>
+      <input type="text" class="form-control" id="resumen" name="resumen" required>
+    </div>
+    <div class="mb-3">
+      <label for="categoria" class="form-label parrafos">Categoría:</label>
+      <select class="form-select" id="categoria_articulo" name="categoria_articulo">
+        <option value="">Selecciona una categoría</option>
+        {% for categoria in categorias %}
+          <option value="{{ categoria.id }}">{{ categoria.nombre }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="contenido" class="form-label parrafos">Contenido:</label>
+      <textarea class="form-control" id="contenido" name="contenido" rows="10" required></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="imagen" class="form-label parrafos">Imagen:</label>
+      <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Crear Artículo</button>
+  </form>
+</div>
+{% endblock contenido %}

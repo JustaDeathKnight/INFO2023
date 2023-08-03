@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Editar Articulo{% endblock titulo %}
+
+{% block contenido %}
+<div class="card container py-3 fondo-semi-transparente">
+  <h2>Editar Artículo</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar cambios</button>
+    <a href="{% url 'detalle_articulo' articulo.pk %}">Cancelar</a>
+  </form>
+</div>
+{% endblock contenido %}
