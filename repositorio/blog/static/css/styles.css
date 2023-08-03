@@ -63,7 +63,7 @@ body {
 .img-articulo {
   height: 200px; /* Establece una altura específica */
   object-fit: cover; /* Ajusta la imagen manteniendo la relación de aspecto y recortando si es necesario */
-  border-radius: 10px; /* Redondea los bordes de la imagen */
+  border-radius: 5px 5px 0px 0px; /* Redondea los bordes de la imagen */
 }
 
 /* Estilos para las categorías */
