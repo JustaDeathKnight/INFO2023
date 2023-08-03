@@ -45,7 +45,7 @@
                           {{ comentario.contenido }}
                         </p>
                         <div class="d-flex justify-content-end align-items-end">
-                          {% if user == comentario.autor or user.is_staff %}
+                          {% if user == comentario.autor or user.is_staff or user == articulo.autor %}
                             <form method="post">
                               {% csrf_token %}
                               <a class="btn btn-outline-dark btn-sm" href="{% url 'editar_comentario' pk=articulo.id comentario_id=comentario.id %}">Editar<i class="ms-1 bi bi-pencil-square"></i></a>
