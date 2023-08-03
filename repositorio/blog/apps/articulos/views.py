@@ -120,9 +120,7 @@ def borrar_comentario(request, pk, comentario_id):
         if request.method == 'POST':
             comentario.delete()
             return redirect('detalle_articulo', pk=articulo.id)
-        else:
-            return render(request, 'articulos/borrar_comentario.html', {'comentario': comentario, 'articulo': articulo})
-
+    return render(request, 'articulos/borrar_comentario.html', {'comentario': comentario, 'articulo': articulo})
 
 
 @login_required
