@@ -6,17 +6,17 @@ body {
 
 .titulos-subtitulos {
   color: #ff7b00e0;
-  -webkit-text-stroke: 1px #000000e5
+  -webkit-text-stroke: 1px #000000e5;
 }
 
 .parrafos {
   color: #000000;
-  -webkit-text-stroke: 0.5px #0f0d0ce5
+  -webkit-text-stroke: 0.5px #0f0d0ce5;
 }
 
 .listas {
   color: #000000;
-  -webkit-text-stroke: 0.5px #0a0909e5
+  -webkit-text-stroke: 0.5px #0a0909e5;
 }
 
 /* Estilo para un área con fondo semitransparente */
@@ -50,10 +50,9 @@ body {
 }
 
 /* Estilos para redondear los bordes del fondo blanco */
-.bg-dark {
+.bg-dark-radius {
   border-radius: 10px; /* Puedes ajustar el valor para redondear más o menos */
 }
-
 
 .centro-imagen {
   display: flex;
@@ -89,7 +88,6 @@ body {
     width: 100%;
   }
 }
-
 
 /* Aumenta el tamaño de la fuente */
 .aumentar-fuente {
