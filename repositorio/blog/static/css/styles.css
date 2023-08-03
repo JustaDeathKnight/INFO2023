@@ -5,7 +5,7 @@ body {
 }
 
 .titulos-subtitulos {
-  color: #ff7b00e0;
+  color: #ff7b00;
   -webkit-text-stroke: 1px #000000e5;
 }
 
@@ -84,7 +84,7 @@ body {
 
 /* Asegura que el botón ocupe todo el ancho en pantallas pequeñas */
 @media (max-width: 767px) {
-  .card .btn {
+  .card {
     width: 100%;
   }
 }

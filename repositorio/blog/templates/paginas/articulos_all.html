@@ -5,7 +5,7 @@
 {% block contenido %}
 
 <div class="container p-0">
-  <h2 class="titulos-subtitulos">TODOS LOS ARTICULOS</h2>
+  <h2 class="titulos-subtitulos text-center fondo-semi-transparente">Todos los Articulos</h2>
   <!-- Filtros con collapse de Bootstrap -->
   <div class="row">
     <div class="dropdown col-6">
@@ -76,7 +76,7 @@
 
   <!-- Fin del collapse de filtros -->
 
-  <div class="row mt-4">
+  <div class="row mt-3">
     <!-- Bloque de artículos -->
     <div class="col-md-9 align-items-between">
       {% for articulo in articulos %}
@@ -95,7 +95,7 @@
             <div class="card-body">
               <h4 class="card-title">{{ articulo.titulo }}</h4>
               <p class="card-text aumentar-fuente">{{ articulo.resumen }}</p>
-              <p class="card-text">{{ articulo.contenido | linebreaksbr | slice:"150" }}{{ "..." }}</p>
+              <p class="card-text">{{ articulo.contenido | linebreaksbr | slice:"50" }}...</p>
               <a
                 href="{% url 'detalle_articulo' articulo.id %}"
                 class="btn btn-light border border-dark"
