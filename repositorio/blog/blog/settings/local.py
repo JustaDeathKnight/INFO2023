@@ -19,5 +19,8 @@ DATABASES = {
         # Host y puerto
         'HOST': 'localhost',
         'PORT': '',
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+        }
     }
 }

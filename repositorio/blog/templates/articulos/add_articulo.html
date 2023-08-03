@@ -6,6 +6,7 @@
   <h1 class="mb-4 titulos-subtitulos ">Crear Nuevo Artículo</h1>
   <form method="post" enctype ="multipart/form-data">
     {% csrf_token %}
+    {{form.media}}
     {% if form.errors %}
     <div class="alert alert-danger">
       <strong>Error:</strong> {{ form.errors }}
@@ -30,7 +31,7 @@
     </div>
     <div class="mb-3">
       <label for="contenido" class="form-label parrafos">Contenido:</label>
-      <textarea class="form-control" id="contenido" name="contenido" rows="10" required></textarea>
+      {{ form.contenido }} 
     </div>
     <div class="mb-3">
       <label for="imagen" class="form-label parrafos">Imagen:</label>
