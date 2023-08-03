@@ -1,8 +1,10 @@
 from django import forms
 from .models import Articulo, Comentario, Categoria
-
+from ckeditor.widgets import CKEditorWidget  # Importa el widget CKEditorWidget
 
 class ArticuloForm(forms.ModelForm):
+
+    contenido = forms.CharField(widget=CKEditorWidget())  # Utiliza el widget CKEditorWidget para el campo "contenido"
     class Meta:
         model = Articulo
         fields = ['titulo', 'resumen', 'contenido',
