@@ -95,7 +95,7 @@
             <div class="card-body">
               <h4 class="card-title">{{ articulo.titulo }}</h4>
               <p class="card-text aumentar-fuente">{{ articulo.resumen }}</p>
-              <p class="card-text">{{ articulo.contenido | linebreaksbr | slice:"400" }}{{ "..." }}</p>
+              <p class="card-text">{{ articulo.contenido | linebreaksbr | slice:"150" }}{{ "..." }}</p>
               <a
                 href="{% url 'detalle_articulo' articulo.id %}"
                 class="btn btn-light border border-dark"

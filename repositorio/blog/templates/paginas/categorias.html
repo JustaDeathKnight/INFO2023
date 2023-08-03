@@ -1,23 +1,30 @@
 {% extends 'base.html' %}
 {% block contenido %}
-<h2 class=" titulos-subtitulos fondo-semi-transparente text-center">Todas las Categorías</h2>
-<div class="row mt-3 g-4 fondo-semi-transparente">
-  {% for categoria in categorias %}
-  <div class="col-md-3">
-    <div class="card-categorias p-1 h-100 bg-dark bg-dark-radius" >
-      <div class="d-flex justify-content-between align-items-center p-1">
-        <div class="flex-column 1h-1 imagename">
-          <a href="{% url 'articulos_por_categoria' categoria.id %}" class="btn btn-outline-light w-100">
-            {{categoria.nombre}}
-          </a>
-        </div>
-        <div>
-          <img src="{{categoria.icono.url}}" alt="{{categoria.nombre}}">
-        </div>
-      </div>
+
+<div class="container">
+  <div class="row pb-2">
+    <div class="col fondo-semi-transparente">
+      <h2 class="titulos-subtitulos text-center mb-0">Todas las Categorías</h2>
     </div>
   </div>
-  {% endfor %}
+  <div class="row fondo-semi-transparente pb-4 pt-2">
+    {% for categoria in categorias %}
+      <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
+        <div class="card-categorias p-1 h-100 bg-dark bg-dark-radius" >
+          <div class="d-flex justify-content-between align-items-center p-1">
+            <div class="flex-column">
+              <a href="{% url 'articulos_por_categoria' categoria.id %}" class="btn btn-outline-light w-100">
+                {{categoria.nombre}}
+              </a>
+            </div>
+            <div>
+              <img class="rounded"src="{{categoria.icono.url}}" alt="{{categoria.nombre}}">
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
 </div>
 {% endblock contenido %}
 
