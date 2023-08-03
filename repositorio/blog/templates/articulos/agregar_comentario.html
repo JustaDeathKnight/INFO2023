@@ -1,5 +1,5 @@
 <h1>Agregar Comentario</h1>
-<form method="post">
+<form method="post" accept-charset="UTF-8">
   {% csrf_token %}
   {{ form.as_p }}
   <button type="submit">Agregar Comentario</button>

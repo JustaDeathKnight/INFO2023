@@ -7,6 +7,7 @@
   <h2>Editar Artículo</h2>
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
+    {{form.media}}
     {{ form.as_p }}
     <button type="submit">Guardar cambios</button>
     <a href="{% url 'detalle_articulo' articulo.pk %}">Cancelar</a>
